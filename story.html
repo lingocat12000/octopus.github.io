@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Silly Story | octopusbrains.fun</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" href="logo.png" type="image/png">
+    <style>
+        #storyEditor {
+            width: 100%;
+            min-height: 300px;
+            padding: 15px;
+            font-size: 16px;
+            border: 2px dashed #4a90e2;
+            border-radius: 5px;
+            margin: 20px 0;
+        }
+        .word-bank {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin: 15px 0;
+        }
+        .word-chip {
+            background: #4a90e2;
+            color: white;
+            padding: 5px 10px;
+            border-radius: 20px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header-container">
+            <a href="index.html" class="logo-link">
+                <img src="logo.png" alt="Octopus Brains Logo" class="logo">
+            </a>
+            <h1>Create a Silly Story</h1>
+        </div>
+
+        <p>Use all your spelling words in a funny story!</p>
+        
+        <div class="word-bank" id="wordBank"></div>
+        
+        <textarea id="storyEditor" placeholder="Once upon a time..."></textarea>
+        
+        <div class="no-print">
+            <button onclick="insertRandomWord()" class="btn">✨ Add Random Word</button>
+            <button onclick="printStory()" class="btn">🖨️ Print Story</button>
+            <a href="index.html" class="btn">← Back to Words</a> <!-- Fixed link -->
+        </div>
+
+        <div class="print-only" style="display:none;">
+            <h2>My Silly Story</h2>
+            <p class="date"></p>
+            <div id="print-story-content"></div>
+            <h3>Words I Used:</h3>
+            <p id="print-words-used"></p>
+        </div>
+    </div>
+
+    <script>
+        // Load saved words
+        const words = JSON.parse(localStorage.getItem("spellingWords")) || [];
+        const wordBank = document.getElementById("wordBank");
+        const storyEditor = document.getElementById("storyEditor");
+        
+        // Display word bank
+        words.forEach(word => {
+            const chip = document.createElement('span');
+            chip.className = 'word-chip';
+            chip.textContent = word;
+            chip.onclick = () => insertWord(word);
+            wordBank.appendChild(chip);
+        });
+        
+        // Insert word at cursor position
+        function insertWord(word) {
+            const cursorPos = storyEditor.selectionStart;
+            const currentText = storyEditor.value;
+            
+            storyEditor.value = 
+                currentText.substring(0, cursorPos) + 
+                word + 
+                currentText.substring(cursorPos);
+                
+            storyEditor.focus();
+            storyEditor.setSelectionRange(cursorPos + word.length, cursorPos + word.length);
+        }
+        
+        // Add random word
+        function insertRandomWord() {
+            if (words.length > 0) {
+                const randomWord = words[Math.floor(Math.random() * words.length)];
+                insertWord(randomWord);
+            }
+        }
+        
+        // Print story
+        function printStory() {
+            const printSection = document.querySelector('.print-only');
+            printSection.innerHTML = `
+                <h2>My Silly Story</h2>
+                <p class="date">${new Date().toLocaleDateString()}</p>
+                <div>${storyEditor.value.replace(/\n/g, '<br>')}</div>
+                <h3>Words I Used:</h3>
+                <p>${words.join(', ')}</p>
+            `;
+            
+            window.print();
+        }
+    </script>
+</body>
+</html>
