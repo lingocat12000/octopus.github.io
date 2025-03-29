@@ -8,43 +8,34 @@
     <link rel="icon" href="logo.png" type="image/png">
 </head>
 <body>
+    <div class="logo-container">
+        <a href="index.html" class="logo-link">
+            <img src="logo.png" alt="Home" class="logo">
+        </a>
+    </div>
+    
     <div class="container">
         <div class="header-container">
-            <a href="index.html" class="logo-link">
-                <img src="logo.png" alt="Octopus Brains Logo" class="logo">
-            </a>
             <h1>Spelling Practice</h1>
         </div>
 
-        <div class="word-entry-container">
-            <p>Enter your spelling words (up to 15):</p>
+        <form id="wordForm">
+            <div id="wordInputs">
+                <div class="word-input-row">
+                    <input type="text" class="word-input" placeholder="Word 1" required>
+                </div>
+            </div>
             
-            <form id="wordForm">
-                <div id="wordInputs">
-                    <div class="word-input-row">
-                        <input type="text" class="word-input" placeholder="Word 1" required>
-                    </div>
-                    <div class="word-input-row">
-                        <input type="text" class="word-input" placeholder="Word 2">
-                    </div>
-                </div>
-                
-                <div class="button-group">
-                    <button type="button" id="addWordBtn" class="btn">+ Add Word</button>
-                    <button type="submit" id="submitBtn" class="btn">Get Definitions</button>
-                </div>
-            </form>
-        </div>
+            <button type="button" id="addWordBtn" class="btn">+ Add Word</button>
+            <button type="submit" id="submitBtn" class="btn">Get Definitions</button>
+        </form>
 
-        <div id="definitions" class="definitions-container"></div>
+        <div id="definitions"></div>
 
         <div class="activities">
-            <div class="activity-card">
-                <h2>Activities</h2>
-                <a href="match.html" class="btn">📸 Match Words to Photos</a>
-                <a href="sentences.html" class="btn">✏️ Write Sentences</a>
-                <a href="story.html" class="btn">📖 Create Silly Story</a>
-            </div>
+            <a href="match.html" class="btn">📸 Match Words to Photos</a>
+            <a href="sentences.html" class="btn">✏️ Write Sentences</a>
+            <a href="story.html" class="btn">📖 Create Silly Story</a>
         </div>
     </div>
 
