@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Match Words | octopusbrains.fun</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" href="logo.png" type="image/png">
+    <style>
+        .match-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 20px;
+            margin: 20px 0;
+        }
+        .match-item {
+            border: 1px solid #ddd;
+            padding: 15px;
+            border-radius: 8px;
+            background: white;
+        }
+        .preview-img {
+            max-width: 100%;
+            height: auto;
+            display: none;
+            margin-top: 10px;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header-container">
+            <a href="index.html" class="logo-link">
+                <img src="logo.png" alt="Octopus Brains Logo" class="logo">
+            </a>
+            <h1>Match Words to Photos</h1>
+        </div>
+
+        <div id="matchContainer" class="match-grid"></div>
+
+        <div class="button-group no-print">
+            <button onclick="window.print()" class="btn">🖨️ Print Activity</button>
+            <a href="index.html" class="btn">← Back to Words</a>
+        </div>
+
+        <div class="print-only" style="display:none;">
+            <h2>My Word Matches</h2>
+            <div id="printMatches"></div>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const words = JSON.parse(localStorage.getItem('spellingWords')) || [];
+            const container = document.getElementById('matchContainer');
+            
+            words.forEach(word => {
+                container.innerHTML += `
+                    <div class="match-item">
+                        <h3>${word}</h3>
+                        <input type="file" accept="image/*" class="photo-upload" id="upload-${word}">
+                        <img src="" class="preview-img" id="preview-${word}">
+                    </div>
+                `;
+            });
+
+            // Handle image uploads
+            document.querySelectorAll('.photo-upload').forEach(input => {
+                input.addEventListener('change', function(e) {
+                    const word = this.id.replace('upload-', '');
+                    const preview = document.getElementById(`preview-${word}`);
+                    const file = e.target.files[0];
+                    
+                    if (file) {
+                        preview.src = URL.createObjectURL(file);
+                        preview.style.display = 'block';
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>
