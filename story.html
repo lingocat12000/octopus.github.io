@@ -6,41 +6,20 @@
     <title>Silly Story | octopusbrains.fun</title>
     <link rel="stylesheet" href="style.css">
     <link rel="icon" href="logo.png" type="image/png">
-    <style>
-        #storyEditor {
-            width: 100%;
-            min-height: 300px;
-            padding: 15px;
-            font-size: 16px;
-            border: 2px dashed #4a90e2;
-            border-radius: 5px;
-            margin: 20px 0;
-        }
-        .word-bank {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 8px;
-            margin: 15px 0;
-        }
-        .word-chip {
-            background: #4a90e2;
-            color: white;
-            padding: 5px 10px;
-            border-radius: 20px;
-            cursor: pointer;
-        }
-    </style>
 </head>
 <body>
+    <div class="logo-container">
+        <a href="index.html" class="logo-link">
+            <img src="logo.png" alt="Home" class="logo">
+        </a>
+    </div>
+    
     <div class="container">
         <div class="header-container">
-            <a href="index.html" class="logo-link">
-                <img src="logo.png" alt="Octopus Brains Logo" class="logo">
-            </a>
             <h1>Create a Silly Story</h1>
         </div>
 
-        <p>Use all your spelling words in a funny story!</p>
+        <p class="instruction">Use all your spelling words in a funny story!</p>
         
         <div class="word-bank" id="wordBank"></div>
         
@@ -49,67 +28,62 @@
         <div class="no-print">
             <button onclick="insertRandomWord()" class="btn">✨ Add Random Word</button>
             <button onclick="printStory()" class="btn">🖨️ Print Story</button>
-            <a href="index.html" class="btn">← Back to Words</a> <!-- Fixed link -->
+            <a href="index.html" class="btn">← Back to Words</a>
         </div>
 
         <div class="print-only" style="display:none;">
             <h2>My Silly Story</h2>
-            <p class="date"></p>
-            <div id="print-story-content"></div>
+            <p class="print-date"></p>
+            <div id="printStoryContent"></div>
             <h3>Words I Used:</h3>
-            <p id="print-words-used"></p>
+            <p id="printWordsUsed"></p>
         </div>
     </div>
 
     <script>
-        // Load saved words
-        const words = JSON.parse(localStorage.getItem("spellingWords")) || [];
-        const wordBank = document.getElementById("wordBank");
-        const storyEditor = document.getElementById("storyEditor");
-        
-        // Display word bank
-        words.forEach(word => {
-            const chip = document.createElement('span');
-            chip.className = 'word-chip';
-            chip.textContent = word;
-            chip.onclick = () => insertWord(word);
-            wordBank.appendChild(chip);
-        });
-        
-        // Insert word at cursor position
-        function insertWord(word) {
-            const cursorPos = storyEditor.selectionStart;
-            const currentText = storyEditor.value;
+        document.addEventListener('DOMContentLoaded', function() {
+            const words = JSON.parse(localStorage.getItem('spellingWords')) || [];
+            const wordBank = document.getElementById('wordBank');
             
-            storyEditor.value = 
-                currentText.substring(0, cursorPos) + 
-                word + 
-                currentText.substring(cursorPos);
-                
-            storyEditor.focus();
-            storyEditor.setSelectionRange(cursorPos + word.length, cursorPos + word.length);
+            words.forEach(word => {
+                const chip = document.createElement('span');
+                chip.className = 'word-chip';
+                chip.textContent = word;
+                chip.addEventListener('click', () => insertWordAtCursor(word));
+                wordBank.appendChild(chip);
+            });
+        });
+
+        function insertWordAtCursor(word) {
+            const editor = document.getElementById('storyEditor');
+            const cursorPos = editor.selectionStart;
+            const text = editor.value;
+            
+            editor.value = text.substring(0, cursorPos) + word + text.substring(cursorPos);
+            editor.focus();
+            editor.setSelectionRange(cursorPos + word.length, cursorPos + word.length);
         }
-        
-        // Add random word
+
         function insertRandomWord() {
+            const words = JSON.parse(localStorage.getItem('spellingWords')) || [];
             if (words.length > 0) {
                 const randomWord = words[Math.floor(Math.random() * words.length)];
-                insertWord(randomWord);
+                insertWordAtCursor(randomWord);
             }
         }
-        
-        // Print story
+
         function printStory() {
-            const printSection = document.querySelector('.print-only');
-            printSection.innerHTML = `
-                <h2>My Silly Story</h2>
-                <p class="date">${new Date().toLocaleDateString()}</p>
-                <div>${storyEditor.value.replace(/\n/g, '<br>')}</div>
-                <h3>Words I Used:</h3>
-                <p>${words.join(', ')}</p>
-            `;
+            const words = JSON.parse(localStorage.getItem('spellingWords')) || [];
+            const story = document.getElementById('storyEditor').value;
             
+            document.getElementById('printStoryContent').innerHTML = 
+                story.replace(/\n/g, '<br>');
+            document.getElementById('printWordsUsed').textContent = words.join(', ');
+            document.querySelector('.print-date').textContent = new Date().toLocaleDateString();
+            
+            document.querySelector('.print-only').style.display = 'block';
             window.print();
+            document.querySelector('.print-only').style.display = 'none';
         }
     </script>
 </body>
