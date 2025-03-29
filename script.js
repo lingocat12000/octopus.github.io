@@ -1,5 +1,5 @@
 document.addEventListener('DOMContentLoaded', function() {
-    // Add Word Button
+    // Word input functionality
     document.getElementById('addWordBtn').addEventListener('click', function() {
         const container = document.getElementById('wordInputs');
         if (container.children.length < 15) {
@@ -14,7 +14,7 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
 
-    // Form Submission
+    // Form submission
     document.getElementById('wordForm').addEventListener('submit', async function(e) {
         e.preventDefault();
         
@@ -23,14 +23,13 @@ document.addEventListener('DOMContentLoaded', function() {
             .filter(word => word.length > 0);
 
         const definitionsDiv = document.getElementById('definitions');
-        definitionsDiv.innerHTML = '<h3>Definitions:</h3>';
+        definitionsDiv.innerHTML = '<h2>Definitions:</h2>';
         
         for (const word of spellingWords) {
             try {
                 const response = await fetch(`https://api.dictionaryapi.dev/api/v2/entries/en/${word}`);
                 const data = await response.json();
                 
-                // Get up to 3 simple definitions
                 const definitions = [];
                 const meanings = data[0]?.meanings || [];
                 
@@ -43,10 +42,9 @@ document.addEventListener('DOMContentLoaded', function() {
                     }
                 }
                 
-                // Display definitions
                 definitionsDiv.innerHTML += `
-                    <div class="word-card">
-                        <h4>${word}</h4>
+                    <div class="word-definition">
+                        <h3>${word}</h3>
                         ${definitions.length > 0 ? 
                             `<ol class="definitions-list">${definitions.join('')}</ol>` : 
                             `<p>No simple definitions found</p>`}
@@ -55,8 +53,8 @@ document.addEventListener('DOMContentLoaded', function() {
                 
             } catch (error) {
                 definitionsDiv.innerHTML += `
-                    <div class="word-card">
-                        <h4>${word}</h4>
+                    <div class="word-definition">
+                        <h3>${word}</h3>
                         <p>Could not load definitions</p>
                     </div>
                 `;
@@ -66,14 +64,13 @@ document.addEventListener('DOMContentLoaded', function() {
         localStorage.setItem('spellingWords', JSON.stringify(spellingWords));
     });
 
-    // Simplify definitions for kids
     function simplifyDefinition(definition) {
         return definition
-            .replace(/\(.*?\)/g, '')  // Remove parentheses content
-            .replace(/"/g, '')         // Remove quotes
-            .split(';')[0]             // Take first clause
-            .split('.')[0]             // Take first sentence
-            .split(/\s+/).slice(0, 12).join(' ')  // Limit to 12 words
-            .replace(/,$/, '');        // Remove trailing commas
+            .replace(/\(.*?\)/g, '')
+            .replace(/"/g, '')
+            .split(';')[0]
+            .split('.')[0]
+            .split(/\s+/).slice(0, 12).join(' ')
+            .replace(/,$/, '');
     }
 });
