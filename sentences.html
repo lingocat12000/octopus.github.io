@@ -6,37 +6,22 @@
     <title>Write Sentences | octopusbrains.fun</title>
     <link rel="stylesheet" href="style.css">
     <link rel="icon" href="logo.png" type="image/png">
-    <style>
-        .sentence-item {
-            margin: 20px 0;
-            padding: 15px;
-            background: white;
-            border-radius: 8px;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-        }
-        textarea {
-            width: 100%;
-            min-height: 80px;
-            padding: 10px;
-            margin-top: 8px;
-            border: 2px solid #ddd;
-            border-radius: 5px;
-            font-size: 16px;
-        }
-    </style>
 </head>
 <body>
+    <div class="logo-container">
+        <a href="index.html" class="logo-link">
+            <img src="logo.png" alt="Home" class="logo">
+        </a>
+    </div>
+    
     <div class="container">
         <div class="header-container">
-            <a href="index.html" class="logo-link">
-                <img src="logo.png" alt="Octopus Brains Logo" class="logo">
-            </a>
             <h1>Write Sentences</h1>
         </div>
 
-        <div id="sentencesContainer"></div>
+        <div id="sentencesContainer" class="print-content"></div>
 
-        <div class="button-group no-print">
+        <div class="no-print">
             <button onclick="printSentences()" class="btn">🖨️ Print Sentences</button>
             <a href="index.html" class="btn">← Back to Words</a>
         </div>
@@ -56,7 +41,7 @@
             words.forEach(word => {
                 container.innerHTML += `
                     <div class="sentence-item">
-                        <label><strong>${word}:</strong></label>
+                        <h2>${word}</h2>
                         <textarea id="sentence-${word}" placeholder="Write a sentence using '${word}'..."></textarea>
                     </div>
                 `;
@@ -71,7 +56,10 @@
             words.forEach(word => {
                 const sentence = document.getElementById(`sentence-${word}`).value;
                 printContainer.innerHTML += `
-                    <p><strong>${word}:</strong> ${sentence || "(No sentence written)"}</p>
+                    <div class="sentence-item">
+                        <h3>${word}</h3>
+                        <p>${sentence || "(No sentence written)"}</p>
+                    </div>
                 `;
             });
             
