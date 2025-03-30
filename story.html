@@ -6,6 +6,16 @@
     <title>Silly Story | octopusbrains.fun</title>
     <link rel="stylesheet" href="style.css">
     <link rel="icon" href="logo.png" type="image/png">
+    <script>
+        function printStory() {
+            // First update the print version
+            const storyText = document.getElementById('storyEditor').value;
+            document.getElementById('printStory').innerText = storyText;
+            
+            // Then print
+            window.print();
+        }
+    </script>
 </head>
 <body>
     <div class="logo-container">
@@ -24,6 +34,9 @@
         <div class="word-bank" id="wordBank"></div>
         
         <textarea id="storyEditor" placeholder="Once upon a time..." style="font-size: 14pt;"></textarea>
+        
+        <!-- Hidden div for printing -->
+        <div id="printStory" class="print-content" style="display: none; font-size: 14pt;"></div>
         
         <div class="no-print">
             <button onclick="insertRandomWord()" class="btn">✨ Add Random Word</button>
