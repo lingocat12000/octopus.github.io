@@ -1,15 +1,25 @@
 /* ===== LOGO STYLING ===== */
 .logo-container {
-    position: absolute;
-    top: 10px;
-    left: 10px;
-    z-index: 1000;
+    position: relative;
+    width: 2in;
+    height: 3in;
+    margin: 10px 0 20px 10px;
+    float: left;
+    clear: both;
 }
 
 .logo {
-    width: 2in;
-    height: 3in;
+    width: 100%;
+    height: 100%;
     object-fit: contain;
+    display: block;
+}
+
+/* Main content container adjustment */
+.container {
+    margin-top: 20px;
+    clear: both;
+    position: relative;
 }
 
 /* Print-specific styles */
@@ -104,4 +114,10 @@
     margin-bottom: 10px;
     padding: 5px;
     border-bottom: 1px solid #000;
+}
+
+/* Header container adjustment */
+.header-container {
+    clear: both;
+    padding-top: 10px;
 }
