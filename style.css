@@ -22,6 +22,67 @@
     position: relative;
 }
 
+/* Input box sizing */
+.word-input {
+    font-size: 14pt;
+    padding: 10px;
+    width: 100%;
+    height: 50px;
+    margin: 5px 0;
+}
+
+/* Sentence textareas */
+.sentence-item textarea {
+    width: 100%;
+    min-height: 120px;
+    font-size: 14pt;
+    padding: 10px;
+    margin: 10px 0;
+}
+
+/* Silly Story Editor - Larger Text Box (ONLY CHANGE) */
+#storyEditor {
+    width: 100%;
+    min-height: 400px;
+    font-size: 14pt;
+    padding: 15px;
+    margin: 15px 0;
+    border: 2px solid #ccc;
+    border-radius: 8px;
+    resize: vertical;
+}
+
+/* Image grid layout */
+.match-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(5, auto);
+    gap: 10px;
+    margin: 10px 0;
+}
+
+.image-preview img {
+    max-width: 100%;
+    max-height: 100px;
+    object-fit: contain;
+}
+
+/* Student name field */
+.student-name-field {
+    display: none;
+    width: 100%;
+    font-size: 14pt;
+    margin-bottom: 10px;
+    padding: 5px;
+    border-bottom: 1px solid #000;
+}
+
+/* Header container adjustment */
+.header-container {
+    clear: both;
+    padding-top: 10px;
+}
+
 /* Print-specific styles */
 @media print {
     .no-print, .logo-container, .btn, .drop-zone {
@@ -71,53 +132,4 @@
         font-size: 14pt !important;
         min-height: 0.8in !important;
     }
-}
-
-/* Input box sizing */
-.word-input {
-    font-size: 14pt;
-    padding: 10px;
-    width: 100%;
-    height: 50px;
-    margin: 5px 0;
-}
-
-/* Sentence textareas */
-.sentence-item textarea {
-    width: 100%;
-    min-height: 120px;
-    font-size: 14pt;
-    padding: 10px;
-    margin: 10px 0;
-}
-
-/* Image grid layout */
-.match-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    grid-template-rows: repeat(5, auto);
-    gap: 10px;
-    margin: 10px 0;
-}
-
-.image-preview img {
-    max-width: 100%;
-    max-height: 100px;
-    object-fit: contain;
-}
-
-/* Student name field */
-.student-name-field {
-    display: none;
-    width: 100%;
-    font-size: 14pt;
-    margin-bottom: 10px;
-    padding: 5px;
-    border-bottom: 1px solid #000;
-}
-
-/* Header container adjustment */
-.header-container {
-    clear: both;
-    padding-top: 10px;
 }
