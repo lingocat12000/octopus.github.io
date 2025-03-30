@@ -38,16 +38,38 @@
                 container.innerHTML += `
                     <div class="match-item">
                         <h3>${word}</h3>
-                        <div class="drop-zone no-print" data-word="${word}">
+                        <div class="drop-zone no-print" data-word="${word}" ondragover="event.preventDefault()" ondrop="handleDrop(event, '${word}')">
                             <p>Drag & drop image here</p>
-                            <input type="file" accept="image/*" class="upload-btn" data-word="${word}">
+                            <input type="file" accept="image/*" class="upload-btn" data-word="${word}" onchange="handleImageUpload(event, '${word}')">
                         </div>
                         <div class="image-preview" id="preview-${word}"></div>
                     </div>
                 `;
             });
 
-            // [Rest of your existing match.html JavaScript]
+            function handleDrop(event, word) {
+                event.preventDefault();
+                const file = event.dataTransfer.files[0];
+                if (file && file.type.startsWith('image/')) {
+                    displayImagePreview(file, word);
+                }
+            }
+
+            function handleImageUpload(event, word) {
+                const file = event.target.files[0];
+                if (file) {
+                    displayImagePreview(file, word);
+                }
+            }
+
+            function displayImagePreview(file, word) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    const previewDiv = document.getElementById(`preview-${word}`);
+                    previewDiv.innerHTML = `<img src="${e.target.result}" alt="${word}">`;
+                };
+                reader.readAsDataURL(file);
+            }
         });
     </script>
 </body>
