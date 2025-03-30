@@ -19,17 +19,13 @@
             <h1>Write Sentences</h1>
         </div>
 
+        <input type="text" class="student-name-field no-print" placeholder="Write your name here">
+
         <div id="sentencesContainer" class="print-content"></div>
 
         <div class="no-print">
             <button onclick="printSentences()" class="btn">🖨️ Print Sentences</button>
             <a href="index.html" class="btn">← Back to Words</a>
-        </div>
-
-        <div class="print-only" style="display:none;">
-            <h2>My Spelling Sentences</h2>
-            <p class="print-date"></p>
-            <div id="printSentences"></div>
         </div>
     </div>
 
@@ -41,32 +37,17 @@
             words.forEach(word => {
                 container.innerHTML += `
                     <div class="sentence-item">
-                        <h2>${word}</h2>
-                        <textarea id="sentence-${word}" placeholder="Write a sentence using '${word}'..."></textarea>
+                        <h3>${word}</h3>
+                        <textarea id="sentence-${word}" 
+                                  placeholder="Write a sentence using '${word}'..."
+                                  style="font-size: 14pt;"></textarea>
                     </div>
                 `;
             });
         });
 
         function printSentences() {
-            const words = JSON.parse(localStorage.getItem('spellingWords')) || [];
-            const printContainer = document.getElementById('printSentences');
-            printContainer.innerHTML = '';
-            
-            words.forEach(word => {
-                const sentence = document.getElementById(`sentence-${word}`).value;
-                printContainer.innerHTML += `
-                    <div class="sentence-item">
-                        <h3>${word}</h3>
-                        <p>${sentence || "(No sentence written)"}</p>
-                    </div>
-                `;
-            });
-            
-            document.querySelector('.print-date').textContent = new Date().toLocaleDateString();
-            document.querySelector('.print-only').style.display = 'block';
             window.print();
-            document.querySelector('.print-only').style.display = 'none';
         }
     </script>
 </body>
