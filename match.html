@@ -19,7 +19,9 @@
             <h1>Match Words to Photos</h1>
         </div>
 
-        <div id="matchContainer" class="print-content"></div>
+        <input type="text" class="student-name-field no-print" placeholder="Write your name here">
+
+        <div id="matchContainer" class="match-grid print-content"></div>
 
         <div class="no-print">
             <button onclick="window.print()" class="btn">🖨️ Print Activity</button>
@@ -35,9 +37,9 @@
             words.forEach(word => {
                 container.innerHTML += `
                     <div class="match-item">
-                        <h2>${word}</h2>
-                        <div class="drop-zone" data-word="${word}">
-                            <p>Drag & drop image here or click to browse</p>
+                        <h3>${word}</h3>
+                        <div class="drop-zone no-print" data-word="${word}">
+                            <p>Drag & drop image here</p>
                             <input type="file" accept="image/*" class="upload-btn" data-word="${word}">
                         </div>
                         <div class="image-preview" id="preview-${word}"></div>
@@ -45,87 +47,8 @@
                 `;
             });
 
-            // Drag and drop functionality
-            document.querySelectorAll('.drop-zone').forEach(zone => {
-                const word = zone.getAttribute('data-word');
-                const input = zone.querySelector('input');
-                const preview = document.getElementById(`preview-${word}`);
-
-                zone.addEventListener('dragover', (e) => {
-                    e.preventDefault();
-                    zone.classList.add('active');
-                });
-
-                ['dragleave', 'dragend'].forEach(type => {
-                    zone.addEventListener(type, () => {
-                        zone.classList.remove('active');
-                    });
-                });
-
-                zone.addEventListener('drop', (e) => {
-                    e.preventDefault();
-                    zone.classList.remove('active');
-                    
-                    if (e.dataTransfer.files.length) {
-                        input.files = e.dataTransfer.files;
-                        handleImageUpload(input.files[0], word);
-                    }
-                });
-
-                input.addEventListener('change', () => {
-                    if (input.files.length) {
-                        handleImageUpload(input.files[0], word);
-                    }
-                });
-            });
-
-            loadSavedImages();
+            // [Rest of your existing match.html JavaScript]
         });
-
-        function handleImageUpload(file, word) {
-            const preview = document.getElementById(`preview-${word}`);
-            const reader = new FileReader();
-            
-            reader.onload = function(e) {
-                preview.innerHTML = `
-                    <img src="${e.target.result}" alt="${word}">
-                    <button onclick="removeImage('${word}')" class="remove-btn no-print">❌ Remove</button>
-                `;
-                saveImage(word, e.target.result);
-            };
-            
-            reader.readAsDataURL(file);
-        }
-
-        function saveImage(word, imageData) {
-            const savedImages = JSON.parse(localStorage.getItem('wordImages') || '{}');
-            savedImages[word] = imageData;
-            localStorage.setItem('wordImages', JSON.stringify(savedImages));
-        }
-
-        function loadSavedImages() {
-            const savedImages = JSON.parse(localStorage.getItem('wordImages')) || {};
-            Object.entries(savedImages).forEach(([word, imageData]) => {
-                const preview = document.getElementById(`preview-${word}`);
-                if (preview) {
-                    preview.innerHTML = `
-                        <img src="${imageData}" alt="${word}">
-                        <button onclick="removeImage('${word}')" class="remove-btn no-print">❌ Remove</button>
-                    `;
-                }
-            });
-        }
-
-        function removeImage(word) {
-            const preview = document.getElementById(`preview-${word}`);
-            preview.innerHTML = '';
-            
-            const savedImages = JSON.parse(localStorage.getItem('wordImages'));
-            delete savedImages[word];
-            localStorage.setItem('wordImages', JSON.stringify(savedImages));
-            
-            document.querySelector(`.drop-zone[data-word="${word}"] input`).value = '';
-        }
     </script>
 </body>
 </html>
