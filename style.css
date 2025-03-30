@@ -1,178 +1,84 @@
-/* Global Styles */
-body {
-    font-family: 'Arial', sans-serif;
-    line-height: 1.8; /* Increased for better readability */
-    margin: 0;
-    padding: 0;
-    background-color: #f0f7ff;
-    color: #333;
-    font-size: 18px; /* Larger base font size */
-}
-
-.container {
-    max-width: 800px;
-    margin: 0 auto;
-    padding: 15px;
-}
-
-/* Logo Styles - Exactly 2x3 inches */
-.logo-container {
-    position: absolute;
-    top: 10px;
-    left: 10px;
-}
-
-.logo-link {
-    display: block;
-    width: 2in;
-    height: 3in;
-}
-
-.logo {
-    width: 100%;
-    height: 100%;
-    object-fit: contain;
-    cursor: pointer;
-    transition: transform 0.2s;
-}
-
-.logo:hover {
-    transform: scale(1.05);
-}
-
-/* Header Styles */
-.header-container {
-    position: relative;
-    padding-top: 3.5in; /* Space for logo */
-    margin-bottom: 20px;
-    text-align: center;
-}
-
-h1 {
-    font-size: 2.2rem; /* Larger heading */
-    color: #2a5c8d;
-    margin: 0 0 20px 0;
-}
-
-/* Button Styles - More prominent */
-.btn {
-    display: inline-block;
-    background: #2a5c8d;
-    color: white;
-    padding: 12px 25px;
-    margin: 10px 5px;
-    border: none;
-    border-radius: 8px;
-    font-size: 1.1rem;
-    font-weight: bold;
-    text-decoration: none;
-    cursor: pointer;
-    box-shadow: 0 3px 6px rgba(0,0,0,0.16);
-    transition: all 0.3s;
-}
-
-.btn:hover {
-    background: #1d456b;
-    transform: translateY(-2px);
-    box-shadow: 0 5px 10px rgba(0,0,0,0.2);
-}
-
-.btn:active {
-    transform: translateY(0);
-}
-
-/* Drag and Drop Styles */
-.drop-zone {
-    border: 3px dashed #4a90e2;
-    border-radius: 10px;
-    padding: 25px;
-    text-align: center;
-    margin: 15px 0;
-    transition: all 0.3s;
-    background: rgba(74, 144, 226, 0.05);
-    font-size: 1.2rem;
-}
-
-.drop-zone.active {
-    background: rgba(74, 144, 226, 0.15);
-    border-color: #2a5c8d;
-}
-
-.drop-zone p {
-    margin: 0;
-    color: #4a90e2;
-    font-weight: bold;
-}
-
-/* Print Optimization */
+/* Print-specific styles */
 @media print {
-    body {
-        font-size: 16pt;
-        line-height: 1.6;
-        padding: 0;
-    }
-    
-    .no-print, .drop-zone, .btn {
+    .no-print, .logo-container, .btn, .drop-zone {
         display: none !important;
     }
     
-    .match-item, .sentence-item {
-        page-break-inside: avoid;
-        margin-bottom: 15pt;
-    }
-    
-    .print-content {
+    body {
+        font-size: 14pt;
         padding: 0.5in;
+        line-height: 1.4;
     }
     
-    img {
-        max-height: 1.5in !important;
+    .student-name-field {
+        display: block !important;
+        margin-bottom: 20pt;
+    }
+    
+    .match-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        grid-template-rows: repeat(5, auto);
+        gap: 10pt;
+        page-break-inside: avoid;
+    }
+    
+    .match-item {
+        page-break-inside: avoid;
+        break-inside: avoid;
+    }
+    
+    .image-preview img {
+        max-width: 100%;
+        max-height: 1.2in;
+        object-fit: contain;
+    }
+    
+    .sentence-item textarea {
+        border: none !important;
+        padding: 0 !important;
+        height: auto !important;
     }
 }
 
-/* Activity Specific Styles */
-.match-item, .sentence-item {
-    background: white;
-    border-radius: 10px;
-    padding: 20px;
-    margin-bottom: 20px;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+/* Input box sizing */
+.word-input {
+    font-size: 14pt;
+    padding: 10px;
+    width: 300px;
+    height: 40px;
+    margin: 5px 0;
+}
+
+/* Sentence textareas */
+.sentence-item textarea {
+    width: 100%;
+    min-height: 100px;
+    font-size: 14pt;
+    padding: 10px;
+    margin: 10px 0;
+}
+
+/* Image grid layout */
+.match-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 15px;
+    margin: 20px 0;
 }
 
 .image-preview img {
     max-width: 100%;
-    max-height: 300px;
-    border-radius: 8px;
-    margin-top: 10px;
+    max-height: 120px;
+    object-fit: contain;
 }
 
-.remove-btn {
-    background: #ff6b6b;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    padding: 8px 15px;
-    margin-top: 10px;
-    font-size: 1rem;
-    cursor: pointer;
-}
-
-.remove-btn:hover {
-    background: #e05555;
-}
-
-/* Mobile Responsiveness */
-@media (max-width: 600px) {
-    .logo-container {
-        width: 1.5in;
-        height: 2.25in;
-    }
-    
-    .header-container {
-        padding-top: 2.5in;
-    }
-    
-    h1 {
-        font-size: 1.8rem;
-    }
+/* Student name field (print only) */
+.student-name-field {
+    display: none;
+    width: 100%;
+    font-size: 14pt;
+    margin-bottom: 20px;
+    padding: 5px;
+    border-bottom: 1px solid #000;
 }
