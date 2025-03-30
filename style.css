@@ -71,16 +71,6 @@
     padding-top: 10px;
 }
 
-/* === BUTTON STYLES === */
-.btn {
-    font-size: 14pt;
-    padding: 12px 24px;
-    margin: 8px 4px;
-    min-width: 200px;
-    height: auto;
-    cursor: pointer;
-}
-
 /* === SILLY STORY TEXT BOX - 6X LARGER === */
 #storyEditor {
     width: 100%;
@@ -93,27 +83,120 @@
     resize: both;
 }
 
+/* ======================== */
+/* == SAFE TO ADD SECTION == */
+/* ======================== */
+/* ABOUT PAGE STYLES (Won't affect other pages) */
+.about-section {
+    max-width: 800px;
+    margin: 0 auto;
+    line-height: 1.6;
+    font-size: 16pt;
+}
+
+.octo-list {
+    list-style-type: none;
+    padding-left: 0;
+}
+
+.octo-list li {
+    margin: 15px 0;
+    padding-left: 40px;
+    text-indent: -30px;
+}
+
+.octo-fact {
+    background: #f0f8ff;
+    border-radius: 10px;
+    padding: 20px;
+    text-align: center;
+    margin: 30px 0;
+}
+
+.octo-science {
+    background: #fff8f0;
+    padding: 20px;
+    border-left: 5px solid #ff9e7d;
+    margin: 30px 0;
+}
+
+.science-img {
+    max-width: 300px;
+    display: block;
+    margin: 20px auto;
+}
+
+.teacher-bio {
+    background: #f9f9f9;
+    padding: 25px;
+    border-radius: 10px;
+    text-align: center;
+    margin-top: 40px;
+}
+/* ======================== */
+
 /* Print-specific styles */
 @media print {
-    body * {
-        visibility: hidden;
-    }
-    .print-content, .print-content * {
-        visibility: visible;
-    }
-    .print-content {
-        position: absolute;
-        left: 0;
-        top: 0;
-        width: 100%;
-    }
-    #storyEditor {
-        border: none;
-        resize: none;
-        min-height: auto;
-        height: auto;
-    }
-    .no-print {
+    .no-print, .logo-container, .btn, .drop-zone {
         display: none !important;
+    }
+    
+    body {
+        font-size: 14pt;
+        padding: 0.2in;
+        line-height: 1.3;
+        margin: 0;
+    }
+    
+    .student-name-field {
+        display: block !important;
+        margin-bottom: 10pt;
+        width: 100%;
+        border-bottom: 1px solid #000;
+        font-size: 14pt;
+    }
+    
+    .match-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        grid-template-rows: repeat(5, auto);
+        gap: 8pt;
+        page-break-inside: avoid;
+    }
+    
+    .match-item {
+        page-break-inside: avoid;
+        break-inside: avoid;
+        margin-bottom: 5pt;
+    }
+    
+    .image-preview img {
+        max-width: 100%;
+        max-height: 1in;
+        object-fit: contain;
+    }
+    
+    .sentence-item textarea {
+        width: 100% !important;
+        border: 1px dashed #ccc !important;
+        padding: 5pt !important;
+        margin: 5pt 0 !important;
+        font-size: 14pt !important;
+        min-height: 0.8in !important;
+    }
+    
+    #storyEditor {
+        width: 100% !important;
+        height: auto !important;
+        min-height: 6in !important;
+        max-height: none !important;
+        border: 1px solid #000 !important;
+        padding: 10pt !important;
+        margin: 10pt 0 !important;
+        font-size: 14pt !important;
+        resize: none !important;
+        overflow: visible !important;
+        white-space: pre-wrap !important;
+        background-color: transparent !important;
     }
 }
