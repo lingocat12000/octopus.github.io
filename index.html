@@ -14,6 +14,12 @@
         </a>
     </div>
     
+    <!-- SAFE NAVIGATION ADDITION (NEW) -->
+    <nav class="main-nav no-print">
+        <a href="about.html" class="btn">About</a>
+    </nav>
+    <!-- END OF NEW CODE -->
+
     <div class="container">
         <div class="header-container">
             <h1>Spelling Practice</h1>
@@ -32,13 +38,41 @@
 
         <div id="definitions"></div>
 
-        <div class="activities">
+        <div class="activities no-print">
             <a href="match.html" class="btn">📸 Match Words to Photos</a>
             <a href="sentences.html" class="btn">✏️ Write Sentences</a>
             <a href="story.html" class="btn">📖 Create Silly Story</a>
         </div>
     </div>
 
-    <script src="script.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Word input functionality
+            document.getElementById('addWordBtn').addEventListener('click', function() {
+                const container = document.getElementById('wordInputs');
+                if (container.children.length < 15) {
+                    const newInputDiv = document.createElement('div');
+                    newInputDiv.className = 'word-input-row';
+                    newInputDiv.innerHTML = `
+                        <input type="text" class="word-input" placeholder="Word ${container.children.length + 1}">
+                    `;
+                    container.appendChild(newInputDiv);
+                } else {
+                    alert('Maximum 15 words reached!');
+                }
+            });
+
+            // Form submission
+            document.getElementById('wordForm').addEventListener('submit', async function(e) {
+                e.preventDefault();
+                const spellingWords = Array.from(document.querySelectorAll('.word-input'))
+                    .map(input => input.value.trim())
+                    .filter(word => word.length > 0);
+
+                localStorage.setItem('spellingWords', JSON.stringify(spellingWords));
+                window.location.href = 'match.html'; // Redirect to first activity
+            });
+        });
+    </script>
 </body>
 </html>
