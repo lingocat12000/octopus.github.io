@@ -1,3 +1,19 @@
+/* ===== LOGO STYLING ===== */
+/* Logo container (top-left corner) */
+.logo-container {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    z-index: 1000;
+}
+
+/* Logo image (2x3 inches) */
+.logo {
+    width: 2in;
+    height: 3in;
+    object-fit: contain;
+}
+
 /* Print-specific styles */
 @media print {
     .no-print, .logo-container, .btn, .drop-zone {
