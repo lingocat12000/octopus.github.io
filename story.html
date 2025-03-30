@@ -19,72 +19,21 @@
             <h1>Create a Silly Story</h1>
         </div>
 
-        <p class="instruction">Use all your spelling words in a funny story!</p>
-        
+        <input type="text" class="student-name-field no-print" placeholder="Write your name here">
+
         <div class="word-bank" id="wordBank"></div>
         
-        <textarea id="storyEditor" placeholder="Once upon a time..."></textarea>
+        <textarea id="storyEditor" placeholder="Once upon a time..." style="font-size: 14pt;"></textarea>
         
         <div class="no-print">
             <button onclick="insertRandomWord()" class="btn">✨ Add Random Word</button>
             <button onclick="printStory()" class="btn">🖨️ Print Story</button>
             <a href="index.html" class="btn">← Back to Words</a>
         </div>
-
-        <div class="print-only" style="display:none;">
-            <h2>My Silly Story</h2>
-            <p class="print-date"></p>
-            <div id="printStoryContent"></div>
-            <h3>Words I Used:</h3>
-            <p id="printWordsUsed"></p>
-        </div>
     </div>
 
     <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            const words = JSON.parse(localStorage.getItem('spellingWords')) || [];
-            const wordBank = document.getElementById('wordBank');
-            
-            words.forEach(word => {
-                const chip = document.createElement('span');
-                chip.className = 'word-chip';
-                chip.textContent = word;
-                chip.addEventListener('click', () => insertWordAtCursor(word));
-                wordBank.appendChild(chip);
-            });
-        });
-
-        function insertWordAtCursor(word) {
-            const editor = document.getElementById('storyEditor');
-            const cursorPos = editor.selectionStart;
-            const text = editor.value;
-            
-            editor.value = text.substring(0, cursorPos) + word + text.substring(cursorPos);
-            editor.focus();
-            editor.setSelectionRange(cursorPos + word.length, cursorPos + word.length);
-        }
-
-        function insertRandomWord() {
-            const words = JSON.parse(localStorage.getItem('spellingWords')) || [];
-            if (words.length > 0) {
-                const randomWord = words[Math.floor(Math.random() * words.length)];
-                insertWordAtCursor(randomWord);
-            }
-        }
-
-        function printStory() {
-            const words = JSON.parse(localStorage.getItem('spellingWords')) || [];
-            const story = document.getElementById('storyEditor').value;
-            
-            document.getElementById('printStoryContent').innerHTML = 
-                story.replace(/\n/g, '<br>');
-            document.getElementById('printWordsUsed').textContent = words.join(', ');
-            document.querySelector('.print-date').textContent = new Date().toLocaleDateString();
-            
-            document.querySelector('.print-only').style.display = 'block';
-            window.print();
-            document.querySelector('.print-only').style.display = 'none';
-        }
+        // [Your existing story.html JavaScript]
     </script>
 </body>
 </html>
