@@ -6,16 +6,6 @@
     <title>Silly Story | octopusbrains.fun</title>
     <link rel="stylesheet" href="style.css">
     <link rel="icon" href="logo.png" type="image/png">
-    <script>
-        function printStory() {
-            // First update the print version
-            const storyText = document.getElementById('storyEditor').value;
-            document.getElementById('printStory').innerText = storyText;
-            
-            // Then print
-            window.print();
-        }
-    </script>
 </head>
 <body>
     <div class="logo-container">
@@ -35,9 +25,6 @@
         
         <textarea id="storyEditor" placeholder="Once upon a time..." style="font-size: 14pt;"></textarea>
         
-        <!-- Hidden div for printing -->
-        <div id="printStory" class="print-content" style="display: none; font-size: 14pt;"></div>
-        
         <div class="no-print">
             <button onclick="insertRandomWord()" class="btn">✨ Add Random Word</button>
             <button onclick="printStory()" class="btn">🖨️ Print Story</button>
@@ -46,7 +33,35 @@
     </div>
 
     <script>
-        // [Your existing story.html JavaScript]
+        // Load words from localStorage
+        document.addEventListener('DOMContentLoaded', function() {
+            const words = JSON.parse(localStorage.getItem('spellingWords')) || [];
+            const wordBank = document.getElementById('wordBank');
+            
+            if (words.length > 0) {
+                wordBank.innerHTML = `<h3>Word Bank:</h3><p>${words.join(', ')}</p>`;
+            }
+        });
+
+        // FIXED: Add Random Word functionality
+        function insertRandomWord() {
+            const words = JSON.parse(localStorage.getItem('spellingWords')) || [];
+            if (words.length === 0) {
+                alert("No words available. Add words first!");
+                return;
+            }
+            const editor = document.getElementById('storyEditor');
+            const randomWord = words[Math.floor(Math.random() * words.length)];
+            const cursorPos = editor.selectionStart;
+            
+            editor.value = editor.value.substring(0, cursorPos) + randomWord + editor.value.substring(cursorPos);
+            editor.focus();
+            editor.setSelectionRange(cursorPos + randomWord.length, cursorPos + randomWord.length);
+        }
+
+        function printStory() {
+            window.print();
+        }
     </script>
 </body>
 </html>
