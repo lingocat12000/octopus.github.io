@@ -6,38 +6,46 @@
     
     body {
         font-size: 14pt;
-        padding: 0.5in;
-        line-height: 1.4;
+        padding: 0.2in; /* Reduced white space */
+        line-height: 1.3;
+        margin: 0;
     }
     
     .student-name-field {
         display: block !important;
-        margin-bottom: 20pt;
+        margin-bottom: 10pt;
+        width: 100%;
+        border-bottom: 1px solid #000;
+        font-size: 14pt;
     }
     
     .match-grid {
         display: grid;
         grid-template-columns: repeat(3, 1fr);
         grid-template-rows: repeat(5, auto);
-        gap: 10pt;
+        gap: 8pt; /* Reduced gap */
         page-break-inside: avoid;
     }
     
     .match-item {
         page-break-inside: avoid;
         break-inside: avoid;
+        margin-bottom: 5pt; /* Reduced margin */
     }
     
     .image-preview img {
         max-width: 100%;
-        max-height: 1.2in;
+        max-height: 1in; /* Smaller thumbnails */
         object-fit: contain;
     }
     
     .sentence-item textarea {
-        border: none !important;
-        padding: 0 !important;
-        height: auto !important;
+        width: 100% !important;
+        border: 1px dashed #ccc !important;
+        padding: 5pt !important;
+        margin: 5pt 0 !important;
+        font-size: 14pt !important;
+        min-height: 0.8in !important; /* Smaller but readable */
     }
 }
 
@@ -45,40 +53,41 @@
 .word-input {
     font-size: 14pt;
     padding: 10px;
-    width: 300px;
-    height: 40px;
+    width: 100%; /* Full width */
+    height: 50px; /* Taller for easier typing */
     margin: 5px 0;
 }
 
-/* Sentence textareas */
+/* Sentence textareas (stretch across page) */
 .sentence-item textarea {
     width: 100%;
-    min-height: 100px;
+    min-height: 120px;
     font-size: 14pt;
     padding: 10px;
     margin: 10px 0;
 }
 
-/* Image grid layout */
+/* Image grid layout (3 columns, 5 rows) */
 .match-grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    gap: 15px;
-    margin: 20px 0;
+    grid-template-rows: repeat(5, auto);
+    gap: 10px;
+    margin: 10px 0;
 }
 
 .image-preview img {
     max-width: 100%;
-    max-height: 120px;
+    max-height: 100px; /* Smaller thumbnails */
     object-fit: contain;
 }
 
-/* Student name field (print only) */
+/* Student name field (visible only in print) */
 .student-name-field {
     display: none;
     width: 100%;
     font-size: 14pt;
-    margin-bottom: 20px;
+    margin-bottom: 10px;
     padding: 5px;
     border-bottom: 1px solid #000;
 }
