@@ -71,6 +71,17 @@
     padding-top: 10px;
 }
 
+/* ===== MAIN NAVIGATION ===== */
+.main-nav {
+    text-align: center;
+    margin: 10px 0 20px;
+    clear: both;
+}
+.main-nav .btn {
+    margin: 0 5px;
+    display: inline-block;
+}
+
 /* === SILLY STORY TEXT BOX - 6X LARGER === */
 #storyEditor {
     width: 100%;
