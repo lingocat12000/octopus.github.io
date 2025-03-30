@@ -71,6 +71,15 @@
     padding-top: 10px;
 }
 
+/* === BUTTON STYLES (FIXED SIZE) === */
+.btn {
+    font-size: 14pt !important;
+    padding: 12px 24px !important;
+    margin: 8px 4px !important;
+    min-width: 200px !important;
+    height: auto !important;
+}
+
 /* Print-specific styles */
 @media print {
     .no-print, .logo-container, .btn, .drop-zone {
@@ -120,22 +129,30 @@
         font-size: 14pt !important;
         min-height: 0.8in !important;
     }
-
-    /* PRINT FIX FOR SILLY STORY BOX */
+    
+    /* FIXED PRINT STYLES FOR SILLY STORY */
     #storyEditor {
         width: 100% !important;
-        min-height: 6in !important; /* 6x larger for print */
-        border: 1px dashed #ccc !important;
-        padding: 5pt !important;
-        margin: 5pt 0 !important;
+        height: auto !important;
+        min-height: 6in !important;
+        max-height: none !important;
+        border: 1px solid #000 !important;
+        padding: 10pt !important;
+        margin: 10pt 0 !important;
         font-size: 14pt !important;
+        resize: none !important;
+        overflow: visible !important;
+        white-space: pre-wrap !important;
+        background-color: transparent !important;
+        -webkit-print-color-adjust: exact !important;
+        print-color-adjust: exact !important;
     }
 }
 
-/* === SILLY STORY TEXT BOX - 6X LARGER (ONLY CHANGE) === */
+/* === SILLY STORY TEXT BOX - 6X LARGER === */
 #storyEditor {
     width: 100%;
-    min-height: 720px;  /* 6x original 120px height */
+    min-height: 720px;
     font-size: 14pt;
     padding: 15px;
     margin: 15px 0;
