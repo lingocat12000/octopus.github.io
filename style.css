@@ -40,18 +40,6 @@
     margin: 10px 0;
 }
 
-/* Silly Story Editor - Larger Text Box (ONLY CHANGE) */
-#storyEditor {
-    width: 100%;
-    min-height: 400px;
-    font-size: 14pt;
-    padding: 15px;
-    margin: 15px 0;
-    border: 2px solid #ccc;
-    border-radius: 8px;
-    resize: vertical;
-}
-
 /* Image grid layout */
 .match-grid {
     display: grid;
@@ -132,4 +120,26 @@
         font-size: 14pt !important;
         min-height: 0.8in !important;
     }
+
+    /* PRINT FIX FOR SILLY STORY BOX */
+    #storyEditor {
+        width: 100% !important;
+        min-height: 6in !important; /* 6x larger for print */
+        border: 1px dashed #ccc !important;
+        padding: 5pt !important;
+        margin: 5pt 0 !important;
+        font-size: 14pt !important;
+    }
+}
+
+/* === SILLY STORY TEXT BOX - 6X LARGER (ONLY CHANGE) === */
+#storyEditor {
+    width: 100%;
+    min-height: 720px;  /* 6x original 120px height */
+    font-size: 14pt;
+    padding: 15px;
+    margin: 15px 0;
+    border: 2px solid #ccc;
+    border-radius: 8px;
+    resize: both;
 }
