@@ -4,14 +4,14 @@ body {
     font-size: 18px;
     line-height: 1.6;
     color: #333;
-    background-color: #f8fafc; /* NEW: Light page background */
+    background-color: #f8fafc;
 }
 
 h1 {
     font-size: 2.2rem;
     margin: 0 0 1.5rem;
     color: #2a4365;
-    text-align: center; /* NEW: Center align headings */
+    text-align: center;
 }
 
 h2 {
@@ -25,13 +25,13 @@ h2 {
     max-width: 900px;
     margin: 20px auto;
     padding: 25px;
-    background: white; /* NEW: White content area */
-    border-radius: 12px; /* NEW: Softened corners */
-    box-shadow: 0 2px 10px rgba(0,0,0,0.05); /* NEW: Subtle depth */
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.05);
 }
 
 /* ===== WELCOME SECTION ===== */
-.welcome-message { /* NEW: Dedicated welcome style */
+.welcome-message {
     font-size: 1.2rem;
     text-align: center;
     margin: 0 auto 2rem;
@@ -39,19 +39,20 @@ h2 {
     line-height: 1.7;
     color: #4a5568;
     padding: 15px;
-    background: #f0f9ff; /* Light blue background */
+    background: #f0f9ff;
     border-radius: 8px;
 }
 
 /* ===== CARD-BASED LAYOUT ===== */
-.content-grid { /* NEW: Grid layout for sections */
+.content-grid {
     display: grid;
     grid-template-columns: 1fr;
     gap: 30px;
     margin: 30px 0;
 }
 
-.practice-card { /* NEW: Unified card style */
+/* Updated to target all practice cards consistently */
+.practice-card {
     background: white;
     padding: 25px;
     border-radius: 15px;
@@ -59,11 +60,11 @@ h2 {
     border: 1px solid #e2e8f0;
 }
 
-/* ===== IMPROVED FORM ELEMENTS ===== */
+/* ===== FORM ELEMENTS ===== */
 .word-input {
     height: 50px;
-    margin-bottom: 12px; /* Increased spacing */
-    transition: border-color 0.3s; /* Smooth focus effect */
+    margin-bottom: 12px;
+    transition: border-color 0.3s;
 }
 
 .word-input:focus {
@@ -71,12 +72,12 @@ h2 {
     outline: none;
 }
 
-/* ===== ENHANCED BUTTONS ===== */
+/* ===== BUTTON STYLES ===== */
 .btn {
-    display: inline-flex; /* NEW: Better for icons */
+    display: inline-flex;
     align-items: center;
     justify-content: center;
-    gap: 8px; /* Space between icon/text */
+    gap: 8px;
     background: #4299e1;
     color: white;
     padding: 14px 24px;
@@ -90,11 +91,14 @@ h2 {
     text-align: center;
 }
 
-.btn-resources { /* NEW: Special resources button */
-    background: #38a169; /* Green color */
+/* Enhanced resources button style */
+.btn-resources {
+    background: #38a169;
+    color: white;
 }
 
-.activity-btn { /* NEW: Activity link buttons */
+/* Activity buttons now using btn-resources class */
+.btn-resources.activity-btn {
     display: flex;
     align-items: center;
     padding: 15px 20px;
@@ -105,42 +109,48 @@ h2 {
     transition: all 0.2s;
 }
 
-.activity-btn:hover {
+.btn-resources.activity-btn:hover {
     background: #e2e8f0;
     transform: translateX(5px);
+}
+
+/* Specific style for the resources nav button */
+.main-nav .btn-resources {
+    background: #38a169;
+    color: white;
 }
 
 /* ===== NAVIGATION BAR ===== */
 .main-nav {
     display: flex;
     justify-content: center;
-    gap: 15px; /* Consistent spacing */
+    gap: 15px;
     margin: 20px 0;
-    flex-wrap: wrap; /* NEW: Wrap on small screens */
+    flex-wrap: wrap;
 }
 
-/* ===== RESPONSIVE IMPROVEMENTS ===== */
+/* ===== RESPONSIVE ADJUSTMENTS ===== */
 @media (min-width: 768px) {
     .content-grid {
-        grid-template-columns: 1fr 1fr; /* Side-by-side on desktop */
+        grid-template-columns: 1fr 1fr;
     }
     
     .welcome-message {
-        font-size: 1.3rem; /* Larger text on desktop */
+        font-size: 1.3rem;
     }
 }
 
 @media (max-width: 480px) {
     .main-nav .btn {
-        padding: 12px 18px; /* Smaller buttons on mobile */
+        padding: 12px 18px;
     }
     
     .practice-card {
-        padding: 20px 15px; /* Tighter padding */
+        padding: 20px 15px;
     }
 }
 
-/* ===== PRINT STYLES (unchanged) ===== */
+/* ===== PRINT STYLES ===== */
 @media print {
     /* ... existing print styles ... */
 }
