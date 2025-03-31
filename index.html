@@ -14,35 +14,57 @@
         </a>
     </div>
     
-    <!-- SAFE NAVIGATION ADDITION (NEW) -->
     <nav class="main-nav no-print">
         <a href="about.html" class="btn">About</a>
+        <a href="resources.html" class="btn">📚 Resources</a>
     </nav>
-    <!-- END OF NEW CODE -->
 
     <div class="container">
         <div class="header-container">
-            <h1>Spelling Practice</h1>
+            <h1>Welcome English Learners!</h1>
+            <p class="welcome-message">
+                Practice your weekly spelling words through fun activities!<br>
+                Families can use this site to help students with assignments, play word games, and find learning resources.
+            </p>
         </div>
 
-        <form id="wordForm">
-            <div id="wordInputs">
-                <div class="word-input-row">
-                    <input type="text" class="word-input" placeholder="Word 1" required>
+        <div class="content-grid">
+            <div class="word-practice-card">
+                <h2>Start Your Practice</h2>
+                <form id="wordForm">
+                    <div id="wordInputs">
+                        <div class="word-input-row">
+                            <input type="text" class="word-input" placeholder="Word 1" required>
+                        </div>
+                    </div>
+                    
+                    <div class="button-group">
+                        <button type="button" id="addWordBtn" class="btn">+ Add Word</button>
+                        <button type="submit" id="submitBtn" class="btn">Get Definitions</button>
+                    </div>
+                </form>
+            </div>
+
+            <div class="activities-card">
+                <h2>Learning Activities</h2>
+                <div class="activities">
+                    <a href="match.html" class="activity-btn">
+                        <span class="emoji">📸</span>
+                        <span class="text">Match Words to Photos</span>
+                    </a>
+                    <a href="sentences.html" class="activity-btn">
+                        <span class="emoji">✏️</span>
+                        <span class="text">Write Sentences</span>
+                    </a>
+                    <a href="story.html" class="activity-btn">
+                        <span class="emoji">📖</span>
+                        <span class="text">Create Silly Story</span>
+                    </a>
                 </div>
             </div>
-            
-            <button type="button" id="addWordBtn" class="btn">+ Add Word</button>
-            <button type="submit" id="submitBtn" class="btn">Get Definitions</button>
-        </form>
+        </div>
 
         <div id="definitions"></div>
-
-        <div class="activities no-print">
-            <a href="match.html" class="btn">📸 Match Words to Photos</a>
-            <a href="sentences.html" class="btn">✏️ Write Sentences</a>
-            <a href="story.html" class="btn">📖 Create Silly Story</a>
-        </div>
     </div>
 
     <script>
@@ -70,7 +92,7 @@
                     .filter(word => word.length > 0);
 
                 localStorage.setItem('spellingWords', JSON.stringify(spellingWords));
-                window.location.href = 'match.html'; // Redirect to first activity
+                window.location.href = 'match.html';
             });
         });
     </script>
