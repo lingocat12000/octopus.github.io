@@ -60,6 +60,23 @@ h2 {
     border: 1px solid #e2e8f0;
 }
 
+/* ===== LOGO SIZE ADJUSTMENT ===== */
+.logo-container {
+    text-align: center;
+    margin: 10px 0;
+}
+
+.logo {
+    width: 50%;
+    height: auto;
+    max-width: 120px;
+    transition: transform 0.3s ease;
+}
+
+.logo:hover {
+    transform: scale(1.05);
+}
+
 /* ===== FORM ELEMENTS ===== */
 .word-input {
     height: 50px;
@@ -147,6 +164,11 @@ h2 {
     
     .practice-card {
         padding: 20px 15px;
+    }
+
+    /* Make logo slightly smaller on mobile */
+    .logo {
+        max-width: 100px;
     }
 }
 
