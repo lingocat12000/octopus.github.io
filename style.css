@@ -53,16 +53,9 @@ h2 {
 }
 
 /* ===== IMAGE STYLES ===== */
-.ollie-img {
-    width: 150px;
-    height: auto;
-    margin-right: 20px;
-    border-radius: 10px;
-}
-
 .science-img {
     width: 25%; /* 75% smaller than original */
-    min-width: 250px;
+    min-width: 150px;
     height: auto;
     display: block;
     margin: 20px auto;
@@ -82,7 +75,7 @@ h2 {
 
 .bio-img {
     width: 175%; /* 75% larger than original */
-    max-width: 350px;
+    max-width: 120px;
     height: auto;
     border-radius: 12px;
     margin-right: 30px;
@@ -147,7 +140,7 @@ footer {
     }
     
     .bio-img {
-        width: 100%;
+        width: 7%;
         max-width: none;
         margin-right: 0;
     }
@@ -160,11 +153,6 @@ footer {
     .octo-fact {
         flex-direction: column;
         text-align: center;
-    }
-    
-    .ollie-img {
-        margin-right: 0;
-        margin-bottom: 15px;
     }
 }
 
