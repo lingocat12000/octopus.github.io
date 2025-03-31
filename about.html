@@ -9,16 +9,24 @@
 </head>
 <body>
     <div class="container">
-        <div class="header-container">
+        <div class="logo-container">
+            <a href="index.html" class="logo-link">
+                <img src="logo.png" alt="Home" class="logo">
+            </a>
         </div>
+        
+        <nav class="main-nav no-print">
+            <a href="index.html" class="btn">Home</a>
+            <a href="resources.html" class="btn btn-resources">📚 Resources</a>
+        </nav>
 
         <section class="about-section">
             <div class="octo-fact">
-                <img src="ollie-mascot.png" alt="Ollie the Octopus" width="150">
+                <img src="ollie-mascot.png" alt="Ollie the Octopus" class="ollie-img">
                 <p>Meet Ollie! Our 8-armed spelling buddy who loves words as much as hiding in coconut shells! 🥥</p>
             </div>
 
-            <h2>Our Story</h2>
+            <h1>Our Story</h1>
             <p>Created by a teacher who believes students learn best when they can:</p>
             <ul class="octo-list">
                 <li>🖍️ <strong>Touch</strong> (matching words to pictures)</li>
@@ -34,46 +42,39 @@
                 <li>👂 <strong>Auditory</strong> (word sounds, feedback)</li>
             </ul>
 
-            <h2>Why Octopuses?</h2>
             <div class="octo-science">
+                <h2>Why Octopuses?</h2>
                 <p>Octopuses have <strong>9 brains</strong> - 1 central brain + 1 in each arm! Our activities work the same way:</p>
                 <img src="octo-brain-diagram.PNG" alt="Diagram showing octopus neuron distribution" class="science-img">
             </div>
 
-            <div class="testimonial">
-                <p>"My ADHD students focus 2x longer with OctopusBrains than worksheets!" — Ms. K., 3rd Grade Teacher</p>
-            </div>
-
             <div class="teacher-bio">
-                <h3>About the Creator</h3>
-                <img src="your-photo.jpg" alt="Cat Batchelor, creator of OctopusBrains, smiling in a classroom" width="100">
-                <p>
-                    <strong>Cat Batchelor</strong><br>
-                    <strong>M.Ed. Special Education | EdTech Enthusiast | Multilingual Learner</strong><br>
+                <h2>About the Creator</h2>
+                <img src="your-photo.jpg" alt="Cat Batchelor, creator of OctopusBrains" class="bio-img">
+                <div class="bio-text">
+                    <p><strong>Cat Batchelor</strong><br>
+                    <strong>M.Ed. Special Education | EdTech Enthusiast | Multilingual Learner</strong></p>
                     
-                    Octopus-level multitasker passionate about multisensory learning and dedicated to creating engaging learning experiences for all brains. My superpowers include:<br>
+                    <p>Octopus-level multitasker passionate about multisensory learning and dedicated to creating engaging learning experiences for all brains. My superpowers include:</p>
                     
-                    • Designing adaptive tools to reach every learner<br>
-                    • Native English speaker with survivalist Thai + tourist French<br>
-                    • Spending way too much money on language apps (worth it!)<br>
-                    • Accidentally learning...colorful...vocabulary from students worldwide<br><br>
+                    <ul>
+                        <li>Designing adaptive tools to reach every learner</li>
+                        <li>Native English speaker with survivalist Thai + tourist French</li>
+                        <li>Spending way too much money on language apps (worth it!)</li>
+                        <li>Accidentally learning...colorful...vocabulary from students worldwide</li>
+                    </ul>
                     
-                    Because when it comes to learning, one size fits none - and that's beautiful.
-                </p>
+                    <p>Because when it comes to learning, one size fits none - and that's beautiful.</p>
+                </div>
             </div>
             
-            <div class="support">
-                <p>Love OctopusBrains? Help me keep it free and ad-free!</p>
-                <button>Buy Me a Coffee ☕</button>
-            </div>
-            
-            <nav aria-label="Main navigation">
+            <nav aria-label="Main navigation" class="bottom-nav">
                 <a href="index.html" class="btn" aria-label="Return to homepage">← Back to Homepage</a>
             </nav>
         </section>
 
         <footer>
-            <p>Got questions? <a href="mailto:cat@octopusbrains.fun">Email me</a> or say hi on <a href="#">Twitter/X</a>!</p>
+            <p>Got questions? <a href="mailto:lingocat2025@gmail.com">Email me</a> </p>
         </footer>
     </div>
 
@@ -84,11 +85,6 @@
             if (selectedText.includes('octopus')) {
                 alert('Fun fact: Octopuses have blue blood and 3 hearts! 💙');
             }
-        });
-        
-        // Support button interaction
-        document.querySelector('.support button').addEventListener('click', () => {
-            alert('Thank you for your support! This would link to a donation page in production.');
         });
     </script>
 </body>
