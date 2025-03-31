@@ -16,20 +16,20 @@
     
     <nav class="main-nav no-print">
         <a href="about.html" class="btn">About</a>
-        <a href="resources.html" class="btn">📚 Resources</a>
+        <a href="resources.html" class="btn btn-resources">📚 Resources</a> <!-- Added btn-resources class -->
     </nav>
 
     <div class="container">
         <div class="header-container">
             <h1>Welcome English Learners!</h1>
-            <p class="welcome-message">
+            <p class="welcome-message"> <!-- This already had the correct class -->
                 Practice your weekly spelling words through fun activities!<br>
                 Families can use this site to help students with assignments, play word games, and find learning resources.
             </p>
         </div>
 
-        <div class="content-grid">
-            <div class="word-practice-card">
+        <div class="content-grid"> <!-- This already had the correct class -->
+            <div class="practice-card"> <!-- Changed from word-practice-card -->
                 <h2>Start Your Practice</h2>
                 <form id="wordForm">
                     <div id="wordInputs">
@@ -40,23 +40,23 @@
                     
                     <div class="button-group">
                         <button type="button" id="addWordBtn" class="btn">+ Add Word</button>
-                        <button type="submit" id="submitBtn" class="btn">Get Definitions</button>
+                        <button type="submit" id="submitBtn" class="btn btn-resources">Get Definitions</button> <!-- Added btn-resources -->
                     </div>
                 </form>
             </div>
 
-            <div class="activities-card">
+            <div class="practice-card"> <!-- Changed from activities-card -->
                 <h2>Learning Activities</h2>
                 <div class="activities">
-                    <a href="match.html" class="activity-btn">
+                    <a href="match.html" class="activity-btn btn-resources"> <!-- Added btn-resources -->
                         <span class="emoji">📸</span>
                         <span class="text">Match Words to Photos</span>
                     </a>
-                    <a href="sentences.html" class="activity-btn">
+                    <a href="sentences.html" class="activity-btn btn-resources"> <!-- Added btn-resources -->
                         <span class="emoji">✏️</span>
                         <span class="text">Write Sentences</span>
                     </a>
-                    <a href="story.html" class="activity-btn">
+                    <a href="story.html" class="activity-btn btn-resources"> <!-- Added btn-resources -->
                         <span class="emoji">📖</span>
                         <span class="text">Create Silly Story</span>
                     </a>
