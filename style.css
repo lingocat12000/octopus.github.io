@@ -30,63 +30,90 @@ h2 {
     box-shadow: 0 2px 10px rgba(0,0,0,0.05);
 }
 
-/* ===== WELCOME SECTION ===== */
-.welcome-message {
-    font-size: 1.2rem;
-    text-align: center;
-    margin: 0 auto 2rem;
-    max-width: 800px;
-    line-height: 1.7;
-    color: #4a5568;
-    padding: 15px;
+/* ===== ABOUT PAGE SPECIFIC STYLES ===== */
+.about-section {
+    padding: 20px 0;
+}
+
+.octo-fact {
+    display: flex;
+    align-items: center;
+    margin-bottom: 30px;
     background: #f0f9ff;
+    padding: 20px;
+    border-radius: 12px;
+}
+
+.octo-list {
+    padding-left: 20px;
+}
+
+.octo-list li {
+    margin-bottom: 10px;
+}
+
+/* ===== IMAGE STYLES ===== */
+.ollie-img {
+    width: 150px;
+    height: auto;
+    margin-right: 20px;
+    border-radius: 10px;
+}
+
+.science-img {
+    width: 25%; /* 75% smaller than original */
+    min-width: 250px;
+    height: auto;
+    display: block;
+    margin: 20px auto;
+    border: 2px solid #e2e8f0;
     border-radius: 8px;
 }
 
-/* ===== CARD-BASED LAYOUT ===== */
-.content-grid {
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: 30px;
-    margin: 30px 0;
+.teacher-bio {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-start;
+    margin: 40px 0;
+    padding: 20px;
+    background: #f0f9ff;
+    border-radius: 12px;
 }
 
-/* Updated to target all practice cards consistently */
-.practice-card {
-    background: white;
-    padding: 25px;
-    border-radius: 15px;
-    box-shadow: 0 4px 6px rgba(0,0,0,0.05);
-    border: 1px solid #e2e8f0;
-}
-
-/* ===== LOGO SIZE ADJUSTMENT ===== */
-.logo-container {
-    text-align: center;
-    margin: 10px 0;
-}
-
-.logo {
-    width: 50%;
+.bio-img {
+    width: 175%; /* 75% larger than original */
+    max-width: 350px;
     height: auto;
-    max-width: 110px;
-    transition: transform 0.3s ease;
+    border-radius: 12px;
+    margin-right: 30px;
+    margin-bottom: 20px;
+    box-shadow: 0 3px 10px rgba(0,0,0,0.1);
 }
 
-.logo:hover {
-    transform: scale(1.05);
+.bio-text {
+    flex: 1;
+    min-width: 300px;
 }
 
-/* ===== FORM ELEMENTS ===== */
-.word-input {
-    height: 50px;
-    margin-bottom: 12px;
-    transition: border-color 0.3s;
+/* ===== NAVIGATION & FOOTER ===== */
+.main-nav {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin: 20px 0;
+    flex-wrap: wrap;
 }
 
-.word-input:focus {
-    border-color: #4299e1;
-    outline: none;
+.bottom-nav {
+    margin-top: 40px;
+    text-align: center;
+}
+
+footer {
+    text-align: center;
+    margin-top: 40px;
+    padding-top: 20px;
+    border-top: 1px solid #e2e8f0;
 }
 
 /* ===== BUTTON STYLES ===== */
@@ -108,71 +135,49 @@ h2 {
     text-align: center;
 }
 
-/* Enhanced resources button style */
 .btn-resources {
     background: #38a169;
     color: white;
 }
 
-/* Activity buttons now using btn-resources class */
-.btn-resources.activity-btn {
-    display: flex;
-    align-items: center;
-    padding: 15px 20px;
-    background: #edf2f7;
-    color: #2d3748;
-    border-radius: 8px;
-    margin: 10px 0;
-    transition: all 0.2s;
-}
-
-.btn-resources.activity-btn:hover {
-    background: #e2e8f0;
-    transform: translateX(5px);
-}
-
-/* Specific style for the resources nav button */
-.main-nav .btn-resources {
-    background: #38a169;
-    color: white;
-}
-
-/* ===== NAVIGATION BAR ===== */
-.main-nav {
-    display: flex;
-    justify-content: center;
-    gap: 15px;
-    margin: 20px 0;
-    flex-wrap: wrap;
-}
-
 /* ===== RESPONSIVE ADJUSTMENTS ===== */
-@media (min-width: 768px) {
-    .content-grid {
-        grid-template-columns: 1fr 1fr;
+@media (max-width: 768px) {
+    .teacher-bio {
+        flex-direction: column;
     }
     
-    .welcome-message {
-        font-size: 1.3rem;
+    .bio-img {
+        width: 100%;
+        max-width: none;
+        margin-right: 0;
+    }
+    
+    .science-img {
+        width: 80%;
+        min-width: auto;
+    }
+    
+    .octo-fact {
+        flex-direction: column;
+        text-align: center;
+    }
+    
+    .ollie-img {
+        margin-right: 0;
+        margin-bottom: 15px;
     }
 }
 
 @media (max-width: 480px) {
-    .main-nav .btn {
-        padding: 12px 18px;
+    .container {
+        padding: 15px;
     }
     
-    .practice-card {
-        padding: 20px 15px;
+    h1 {
+        font-size: 1.8rem;
     }
-
-    /* Make logo slightly smaller on mobile */
-    .logo {
-        max-width: 90px;
+    
+    h2 {
+        font-size: 1.5rem;
     }
-}
-
-/* ===== PRINT STYLES ===== */
-@media print {
-    /* ... existing print styles ... */
 }
