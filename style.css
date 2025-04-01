@@ -37,7 +37,7 @@ h2 {
 /* ===== IMAGE STYLES ===== */
 /* Rectangular images (2x3 inches) */
 .ollie-img, .science-img {
-    width: 288px;  /* 2 inches at 96ppi */
+    width: 400px;  /* 2 inches at 96ppi */
     height: 288px; /* 3 inches */
     object-fit: cover;
     border-radius: 8px;
