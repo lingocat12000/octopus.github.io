@@ -19,22 +19,29 @@ body {
     box-shadow: 0 4px 12px rgba(0,0,0,0.08);
 }
 
-/* ===== IMAGE STYLES (3x3 INCHES) ===== */
-.ollie-img, 
-.science-img, 
-.bio-img {
-    width: 288px;  /* 3 inches at 96ppi */
-    height: 288px; /* 3 inches */
+/* ===== IMAGE STYLES ===== */
+/* UPDATED: Science image now 4"x5" (384px x 480px at 96ppi) */
+.science-img {
+    width: 384px;  
+    height: 480px; 
     object-fit: cover;
     border-radius: 12px;
     border: 3px solid #e2e8f0;
     box-shadow: 0 4px 12px rgba(0,0,0,0.1);
     display: block;
+    margin: 0 auto; /* Centers the image */
 }
 
-/* Square images keep ratio, rectangular get vertical space */
-.ollie-img {
-    height: 288px; /* Force 3x3 for Ollie */
+/* Original 3"x3" images (Ollie and Bio) */
+.ollie-img, 
+.bio-img {
+    width: 288px;  
+    height: 288px; 
+    object-fit: cover;
+    border-radius: 12px;
+    border: 3px solid #e2e8f0;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    display: block;
 }
 
 /* ===== OUR STORY SECTION - HIGHLIGHTED ===== */
@@ -178,7 +185,11 @@ footer a {
     }
     
     .ollie-img,
-    .bio-img {
+    .bio-img,
+    .science-img {
+        width: 100%; /* Flexible width */
+        height: auto; /* Maintain aspect ratio */
+        max-width: 288px; /* Prevents oversized images */
         margin-bottom: 25px;
     }
     
