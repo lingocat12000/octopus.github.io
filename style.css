@@ -1,170 +1,193 @@
 /* ===== BASE STYLES ===== */
 body {
     font-family: 'Comic Sans MS', 'Chalkboard SE', 'Marker Felt', sans-serif;
-    font-size: 19px; /* Increased from 18px */
+    font-size: 20px; /* Larger base font size */
     line-height: 1.6;
     color: #333;
     background-color: #f8f9fa;
     margin: 0;
-    padding: 0;
+    padding: 20px;
+    text-align: center; /* Center-align all text by default */
 }
 
 /* ===== LAYOUT CONTAINER ===== */
 .container {
-    max-width: 920px; /* Slightly narrower for better text flow */
-    margin: 15px auto;
-    padding: 25px;
+    max-width: 1000px;
+    margin: 0 auto; /* Proper centering */
+    padding: 30px;
     background: white;
     border-radius: 15px;
     box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+    text-align: left; /* Reset text alignment for content */
 }
 
 /* ===== IMAGE STYLES ===== */
-/* 4"x5" OCTOPUS BRAIN IMAGE (384x480px at 96ppi) */
+/* Full-size octopus brain image (now properly sized) */
 .science-img {
-    width: 384px;
-    height: 480px;
-    object-fit: cover;
+    width: 480px; /* 5 inches at 96ppi */
+    height: 384px; /* 4 inches */
+    object-fit: contain; /* Ensures full image shows */
     border-radius: 12px;
     border: 3px solid #e2e8f0;
     box-shadow: 0 4px 12px rgba(0,0,0,0.1);
     display: block;
-    margin: 0 auto 20px;
+    margin: 0 auto 30px; /* Centered with space below */
 }
 
 /* Other images */
 .ollie-img, 
 .bio-img {
-    width: 250px; /* Slightly reduced */
-    height: 250px;
+    width: 300px;
+    height: 300px;
     object-fit: cover;
     border-radius: 12px;
     border: 3px solid #e2e8f0;
     box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    display: block;
+    margin: 0 auto; /* Centered */
 }
 
-/* ===== TIGHTENED "ABOUT THE CREATOR" SECTION ===== */
+/* ===== IMPROVED SECTION STYLES ===== */
+.section {
+    margin-bottom: 40px;
+    padding: 25px;
+    background: #f8fafc;
+    border-radius: 15px;
+}
+
+/* About the Creator - Compact but readable */
 .teacher-bio {
     display: flex;
-    gap: 30px; /* Reduced from 40px */
-    align-items: flex-start; /* Better alignment */
-    padding: 20px; /* Reduced from 30px */
+    gap: 30px;
+    align-items: center;
+    padding: 20px;
     background: linear-gradient(135deg, #f8fafc 0%, #f0f9ff 100%);
     border-radius: 15px;
-    margin: 20px 0; /* Reduced from 40px */
+    margin: 30px 0;
 }
 
 .bio-text {
     flex: 1;
-    padding-right: 10px; /* Prevents text from touching image */
 }
 
-.bio-text p {
-    margin: 10px 0; /* Tighter paragraph spacing */
-}
-
-/* ===== OUR STORY SECTION ===== */
-.our-story-box {
-    background: #f0f9ff;
-    padding: 25px; /* Slightly reduced */
-    border-radius: 15px;
-    border-left: 6px solid #4299e1;
-    margin-bottom: 25px;
-}
-
-.our-story-box h1 {
-    font-size: 2.2rem; /* Larger heading */
-    margin: 0 0 15px 0;
-}
-
-/* ===== OCTO-FACT SECTION ===== */
-.octo-fact {
-    display: flex;
-    gap: 30px;
-    align-items: center;
-    padding: 25px;
-    margin-bottom: 25px;
-}
-
-/* ===== SCIENCE SECTION ===== */
-.octo-science {
-    padding: 25px;
-    margin: 25px 0;
-}
-
-/* ===== TYPOGRAPHY IMPROVEMENTS ===== */
+/* ===== TYPOGRAPHY ENHANCEMENTS ===== */
 h1 {
-    font-size: 2.2rem; /* Larger headings */
-    line-height: 1.3;
+    font-size: 2.5rem; /* Much larger heading */
+    color: #2a4365;
+    margin-top: 0;
+    text-align: center; /* Centered heading */
+    border-bottom: 2px dashed #4299e1;
+    padding-bottom: 15px;
+    margin-bottom: 25px;
 }
 
 h2 {
-    font-size: 1.8rem;
+    font-size: 2rem;
+    color: #2c5282;
+    margin: 25px 0 15px;
 }
 
-p, li {
-    font-size: 1.05em; /* Slightly larger body text */
+p {
+    font-size: 1.1em; /* Larger paragraph text */
+    margin: 0 0 15px;
+    line-height: 1.7;
 }
 
-/* ===== COMPACT LIST STYLES ===== */
+/* ===== LIST STYLES ===== */
 .octo-list {
     padding-left: 0;
-    margin: 15px 0;
+    margin: 20px 0;
 }
 
 .octo-list li {
-    margin-bottom: 12px;
-    padding: 8px 12px;
+    margin-bottom: 15px;
+    list-style-type: none;
+    padding: 12px 15px;
+    background: rgba(255,255,255,0.7);
+    border-radius: 8px;
+    position: relative;
+    font-size: 1.05em; /* Slightly larger list items */
 }
 
-/* ===== NAVIGATION & FOOTER ===== */
+.octo-list li:before {
+    content: "🐙";
+    margin-right: 12px;
+    font-size: 1.2em;
+}
+
+/* ===== NAVIGATION & BUTTONS ===== */
 .main-nav {
-    gap: 15px;
-    margin: 0 0 30px 0;
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    margin: 0 0 40px 0;
     padding: 15px;
+    background: #ebf8ff;
+    border-radius: 15px;
 }
 
+.btn {
+    padding: 16px 28px;
+    font-size: 1.1em;
+    border-radius: 50px;
+    transition: all 0.3s ease;
+}
+
+/* ===== FOOTER ===== */
 footer {
-    margin-top: 30px;
-    padding: 20px;
+    text-align: center;
+    margin-top: 50px;
+    padding: 25px;
+    background: #2a4365;
+    color: white;
+    border-radius: 15px;
 }
 
 /* ===== RESPONSIVE DESIGN ===== */
+@media (max-width: 900px) {
+    .science-img {
+        width: 100%;
+        max-width: 480px;
+        height: auto;
+    }
+}
+
 @media (max-width: 768px) {
     .container {
         padding: 20px;
     }
     
-    .octo-fact, 
     .teacher-bio {
         flex-direction: column;
-        gap: 20px;
-    }
-    
-    .science-img {
-        width: 100%;
-        max-width: 384px;
-        height: auto;
-        aspect-ratio: 4/5; /* Maintains 4x5 ratio */
+        text-align: center;
     }
     
     .ollie-img,
     .bio-img {
-        width: 200px;
-        height: 200px;
+        margin-bottom: 25px;
+    }
+    
+    h1 {
+        font-size: 2rem;
+    }
+    
+    h2 {
+        font-size: 1.8rem;
     }
 }
 
 @media (max-width: 480px) {
     body {
-        font-size: 18px; /* Maintain large text on mobile */
+        font-size: 18px;
+        padding: 10px;
     }
     
-    .container {
-        padding: 15px;
+    .main-nav {
+        flex-direction: column;
+        align-items: center;
     }
     
-    h1 {
-        font-size: 1.8rem;
+    .btn {
+        width: 100%;
     }
 }
