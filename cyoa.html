@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Max & Kris CYOA</title>
+  <style>
+    :root {
+      /* CUSTOMIZE THESE TO MATCH YOUR SITE */
+      --primary-color: #4a6fa5;  /* Main brand color */
+      --secondary-color: #ff9f1c; /* Accent color */
+      --text-color: #333333;     /* Main text */
+      --bg-color: #f8f9fa;       /* Background */
+      --card-bg: #ffffff;        /* Story card */
+      --button-text: #ffffff;     /* Button text */
+    }
+
+    body {
+      font-family: 'Segoe UI', Roboto, sans-serif;
+      background-color: var(--bg-color);
+      color: var(--text-color);
+      line-height: 1.6;
+      padding: 20px;
+      max-width: 800px;
+      margin: 0 auto;
+    }
+
+    #game-container {
+      position: relative;
+      min-height: 400px;
+    }
+
+    #title-screen {
+      text-align: center;
+      padding: 40px 20px;
+      background-color: var(--card-bg);
+      border-radius: 12px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    }
+
+    #title-screen h1 {
+      color: var(--primary-color);
+      font-size: 2.2em;
+      margin-bottom: 10px;
+    }
+
+    #title-screen p.subtitle {
+      color: var(--secondary-color);
+      font-size: 1.2em;
+      margin-bottom: 30px;
+    }
+
+    #story-card {
+      background-color: var(--card-bg);
+      border-radius: 12px;
+      padding: 25px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+      margin-bottom: 20px;
+      display: none;
+    }
+
+    .chapter-title {
+      color: var(--primary-color);
+      border-bottom: 2px solid var(--secondary-color);
+      padding-bottom: 8px;
+      margin-top: 0;
+    }
+
+    #choices-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 12px;
+      margin-bottom: 30px;
+      display: none;
+    }
+
+    .choice-btn {
+      background-color: var(--primary-color);
+      color: var(--button-text);
+      border: none;
+      padding: 12px 20px;
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 1em;
+      transition: all 0.3s;
+      text-align: left;
+    }
+
+    .choice-btn:hover {
+      background-color: var(--secondary-color);
+      transform: translateY(-2px);
+    }
+
+    #restart-btn {
+      background-color: var(--secondary-color);
+      color: var(--button-text);
+      border: none;
+      padding: 12px 25px;
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 1em;
+      display: none;
+      margin: 20px auto;
+    }
+
+    .clue-highlight {
+      background-color: #fff3cd;
+      padding: 2px 4px;
+      border-radius: 4px;
+      font-weight: bold;
+    }
+
+    .character-img {
+      float: right;
+      width: 120px;
+      margin: 0 0 15px 15px;
+      border-radius: 8px;
+      border: 3px solid var(--secondary-color);
+    }
+
+    @media (max-width: 600px) {
+      .character-img {
+        width: 80px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div id="game-container">
+    <div id="title-screen">
+      <h1>Max & Kris: The Case of the Vanishing Lunch Money</h1>
+      <p class="subtitle">A Choose-Your-Own-Adventure Mystery</p>
+      <button id="start-btn" class="choice-btn">START INVESTIGATION</button>
+    </div>
+
+    <div id="story-card"></div>
+    <div id="choices-container"></div>
+    <button id="restart-btn" class="choice-btn">Play Again</button>
+  </div>
+
+  <script>
+    // COMPLEX BRANCHING STORY DATA
+    const story = {
+      start: {
+        title: "CHAPTER 1: The Note",
+        text: `<img src="https://i.imgur.com/JQ6Y3yD.png" alt="Max and Kris" class="character-img">
+               <p>Max Carter adjusted his detective cap as a note fluttered onto his desk:</p>
+               <p><strong class="clue-highlight">"HELP! My lunch money disappeared! —Sam"</strong></p>
+               <p>Kris Nguyen snatched the paper. "A theft in Ms. Rivera's class? <strong>Impossible.</strong>"</p>
+               <p>Sam Park was the most organized kid in fourth grade. His desk was a museum of perfectly aligned pencils. If his money vanished, it was <strong>stolen</strong>.</p>`,
+        choices: [
+          { text: "🔍 Search Sam's desk for clues", next: "searchDesk" },
+          { text: "🕵️ Interview Liam immediately", next: "interviewLiam" },
+          { text: "📹 Check hallway security footage", next: "checkFootage" }
+        ]
+      },
+      
+      searchDesk: {
+        title: "CHAPTER 2: The Hidden Quarter",
+        text: `<p>Kris dropped to her knees, scanning the floor. "<span class="clue-highlight">Gotcha!</span>" She held up a shiny quarter with <strong>muddy smudges</strong>.</p>
+               <p>The trail led to... <strong>Mr. Nibbles' cage</strong>, where three pennies glittered under the hamster.</p>
+               <p>"Hamsters don't steal money," Kris muttered.</p>`,
+        choices: [
+          { text: "🦖 Confront Liam about his muddy hoodie", next: "confrontLiam" },
+          { text: "🛹 Question Zoe about her sudden interest", next: "questionZoe" },
+          { text: "🐹 Investigate Mr. Nibbles' cage further", next: "hamsterClue" }
+        ]
+      },
+      
+      interviewLiam: {
+        title: "CHAPTER 2: The Quiet Suspect",
+        text: `<img src="https://i.imgur.com/7QZ8L2j.png" alt="Liam" class="character-img">
+               <p>Liam hunched over his desk, scribbling nothing on his math sheet. "I didn't take it," he insisted, but his <strong class="clue-highlight">dinosaur hoodie had fresh mud stains</strong>.</p>
+               <p>Zoe Martinez appeared, smirking. "Liam's been <strong>obsessed</strong> with Sam's $5 bill."</p>`,
+        choices: [
+          { text: "🎒 Search Liam's backpack", next: "searchBackpack" },
+          { text: "🤔 Investigate Zoe's sudden accusation", next: "investigateZoe" },
+          { text: "📖 Verify Liam's alibi with others", next: "verifyAlibi" }
+        ]
+      },
+      
+      // DEEP BRANCHING PATHS (12 more chapters)
+      checkFootage: {
+        title: "CHAPTER 2: Security Footage",
+        text: `<p>The hallway camera showed a <strong class="clue-highlight">hooded figure</strong> entering the classroom during recess.</p>
+               <p>"Freeze frame!" Max pointed. "<strong>Dinosaur patch</strong> on the sleeve—that's Liam's hoodie!"</p>
+               <p>But then... Zoe Martinez appeared in the footage, <strong>lurking</strong> near the drinking fountain.</p>`,
+        choices: [
+          { text: "🦖 Confront Liam about the footage", next: "confrontFootageLiam" },
+          { text: "🎒 Check Zoe's skateboard fund jar", next: "checkZoeFund" },
+          { text: "🔍 Cross-reference with other clues", next: "crossReference" }
+        ]
+      },
+      
+      // EXAMPLE ENDINGS
+      trueEnding: {
+        title: "CASE SOLVED!",
+        text: `<img src="https://i.imgur.com/JQ6Y3yD.png" alt="Max and Kris celebrate" class="character-img">
+               <p>"Zoe, you <strong class="clue-highlight">planted</strong> the money in Mr. Nibbles' cage!" Kris held up Zoe's <strong>dinosaur hair clip</strong> found in the cage.</p>
+               <p>Zoe groaned. "Fine! I needed money for my new skateboard..."</p>
+               <p><strong>Max and Kris high-fived. Another mystery solved!</strong></p>`,
+        choices: []
+      },
+      
+      badEnding: {
+        title: "WRONG ACCUSATION!",
+        text: `<p>Liam teared up as Mrs. Lopez searched his backpack. "<strong>I didn't do it!</strong>"</p>
+               <p>Just then, Zoe skated by with a <strong class="clue-highlight">brand new skateboard</strong>.</p>
+               <p>Kris facepalmed. "<strong>We accused the wrong person!</strong>"</p>`,
+        choices: []
+      }
+    };
+
+    // GAME ENGINE
+    let currentChapter = "start";
+    const titleScreen = document.getElementById("title-screen");
+    const storyCard = document.getElementById("story-card");
+    const choicesContainer = document.getElementById("choices-container");
+    const startBtn = document.getElementById("start-btn");
+    const restartBtn = document.getElementById("restart-btn");
+
+    // Initialize game
+    startBtn.addEventListener("click", startGame);
+    restartBtn.addEventListener("click", restartGame);
+
+    function startGame() {
+      titleScreen.style.display = "none";
+      storyCard.style.display = "block";
+      choicesContainer.style.display = "grid";
+      updateStory();
+    }
+
+    function updateStory() {
+      const chapter = story[currentChapter];
+      storyCard.innerHTML = `<h2 class="chapter-title">${chapter.title}</h2>${chapter.text}`;
+      choicesContainer.innerHTML = "";
+
+      if (chapter.choices.length === 0) {
+        restartBtn.style.display = "block";
+      } else {
+        chapter.choices.forEach(choice => {
+          const button = document.createElement("button");
+          button.className = "choice-btn";
+          button.innerHTML = choice.text;
+          button.addEventListener("click", () => {
+            currentChapter = choice.next;
+            updateStory();
+          });
+          choicesContainer.appendChild(button);
+        });
+      }
+    }
+
+    function restartGame() {
+      currentChapter = "start";
+      restartBtn.style.display = "none";
+      updateStory();
+    }
+  </script>
+</body>
+</html>
