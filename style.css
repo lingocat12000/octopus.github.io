@@ -1,136 +1,170 @@
 /* ===== BASE STYLES ===== */
 body {
     font-family: 'Comic Sans MS', 'Chalkboard SE', 'Marker Felt', sans-serif;
-    font-size: 16px; /* Slightly smaller font */
-    line-height: 1.5; /* Tighter line spacing */
+    font-size: 19px; /* Increased from 18px */
+    line-height: 1.6;
     color: #333;
     background-color: #f8f9fa;
     margin: 0;
-    padding: 10px; /* Body padding added */
+    padding: 0;
 }
 
 /* ===== LAYOUT CONTAINER ===== */
 .container {
-    max-width: 900px; /* Reduced from 1000px */
-    margin: 10px auto; /* Smaller margin */
-    padding: 20px; /* Reduced padding */
+    max-width: 920px; /* Slightly narrower for better text flow */
+    margin: 15px auto;
+    padding: 25px;
     background: white;
-    border-radius: 12px;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+    border-radius: 15px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
 }
 
 /* ===== IMAGE STYLES ===== */
+/* 4"x5" OCTOPUS BRAIN IMAGE (384x480px at 96ppi) */
 .science-img {
-    width: 320px;  /* Slightly smaller than 4" (better fit) */
-    height: 400px; /* Maintains 4:5 ratio */
+    width: 384px;
+    height: 480px;
     object-fit: cover;
-    border-radius: 10px;
-    border: 2px solid #e2e8f0;
-    box-shadow: 0 2px 6px rgba(0,0,0,0.08);
+    border-radius: 12px;
+    border: 3px solid #e2e8f0;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
     display: block;
-    margin: 0 auto;
+    margin: 0 auto 20px;
 }
 
+/* Other images */
 .ollie-img, 
 .bio-img {
-    width: 240px;  /* Reduced from 288px */
-    height: 240px;
+    width: 250px; /* Slightly reduced */
+    height: 250px;
     object-fit: cover;
-    border-radius: 10px;
-    border: 2px solid #e2e8f0;
-    box-shadow: 0 2px 6px rgba(0,0,0,0.08);
-}
-
-/* ===== COMPACT SECTION STYLES ===== */
-.about-section {
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: 20px; /* Reduced from 40px */
-    padding: 10px 0;
-}
-
-.our-story-box {
-    background: #f0f9ff;
-    padding: 20px; /* Reduced from 30px */
     border-radius: 12px;
-    border-left: 4px solid #4299e1; /* Thinner border */
-    margin-bottom: 20px;
+    border: 3px solid #e2e8f0;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
 }
 
-.our-story-box h1 {
-    font-size: 1.8rem; /* Smaller heading */
-    margin: 0 0 10px 0; /* Tighter margin */
-    padding-bottom: 8px;
-}
-
-.octo-list {
-    margin: 15px 0; /* Reduced margin */
-}
-
-.octo-list li {
-    margin-bottom: 10px; /* Tighter spacing */
-    padding: 8px 12px;
-}
-
-/* ===== FLEX LAYOUT TWEAKS ===== */
-.octo-fact, 
+/* ===== TIGHTENED "ABOUT THE CREATOR" SECTION ===== */
 .teacher-bio {
     display: flex;
-    gap: 20px; /* Reduced from 40px */
+    gap: 30px; /* Reduced from 40px */
+    align-items: flex-start; /* Better alignment */
     padding: 20px; /* Reduced from 30px */
-    margin-bottom: 20px; /* Reduced from 40px */
-}
-
-.octo-science {
-    padding: 20px;
+    background: linear-gradient(135deg, #f8fafc 0%, #f0f9ff 100%);
+    border-radius: 15px;
     margin: 20px 0; /* Reduced from 40px */
 }
 
-/* ===== NAV & FOOTER OPTIMIZATION ===== */
-.main-nav {
-    gap: 10px; /* Tighter button spacing */
-    margin: 0 0 20px 0; /* Reduced bottom margin */
-    padding: 10px;
+.bio-text {
+    flex: 1;
+    padding-right: 10px; /* Prevents text from touching image */
 }
 
-.btn {
-    padding: 12px 20px; /* Smaller buttons */
-    font-size: 1em;
+.bio-text p {
+    margin: 10px 0; /* Tighter paragraph spacing */
+}
+
+/* ===== OUR STORY SECTION ===== */
+.our-story-box {
+    background: #f0f9ff;
+    padding: 25px; /* Slightly reduced */
+    border-radius: 15px;
+    border-left: 6px solid #4299e1;
+    margin-bottom: 25px;
+}
+
+.our-story-box h1 {
+    font-size: 2.2rem; /* Larger heading */
+    margin: 0 0 15px 0;
+}
+
+/* ===== OCTO-FACT SECTION ===== */
+.octo-fact {
+    display: flex;
+    gap: 30px;
+    align-items: center;
+    padding: 25px;
+    margin-bottom: 25px;
+}
+
+/* ===== SCIENCE SECTION ===== */
+.octo-science {
+    padding: 25px;
+    margin: 25px 0;
+}
+
+/* ===== TYPOGRAPHY IMPROVEMENTS ===== */
+h1 {
+    font-size: 2.2rem; /* Larger headings */
+    line-height: 1.3;
+}
+
+h2 {
+    font-size: 1.8rem;
+}
+
+p, li {
+    font-size: 1.05em; /* Slightly larger body text */
+}
+
+/* ===== COMPACT LIST STYLES ===== */
+.octo-list {
+    padding-left: 0;
+    margin: 15px 0;
+}
+
+.octo-list li {
+    margin-bottom: 12px;
+    padding: 8px 12px;
+}
+
+/* ===== NAVIGATION & FOOTER ===== */
+.main-nav {
+    gap: 15px;
+    margin: 0 0 30px 0;
+    padding: 15px;
 }
 
 footer {
-    margin-top: 30px; /* Reduced from 50px */
-    padding: 15px;
+    margin-top: 30px;
+    padding: 20px;
 }
 
 /* ===== RESPONSIVE DESIGN ===== */
 @media (max-width: 768px) {
     .container {
-        padding: 15px;
+        padding: 20px;
     }
-
+    
     .octo-fact, 
     .teacher-bio {
         flex-direction: column;
-        gap: 15px;
+        gap: 20px;
     }
-
-    .science-img,
+    
+    .science-img {
+        width: 100%;
+        max-width: 384px;
+        height: auto;
+        aspect-ratio: 4/5; /* Maintains 4x5 ratio */
+    }
+    
     .ollie-img,
     .bio-img {
-        width: 100%;
-        max-width: 240px;
-        height: auto;
-        margin-bottom: 15px;
+        width: 200px;
+        height: 200px;
     }
 }
 
 @media (max-width: 480px) {
     body {
-        font-size: 15px;
+        font-size: 18px; /* Maintain large text on mobile */
     }
-
-    .our-story-box h1 {
-        font-size: 1.5rem;
+    
+    .container {
+        padding: 15px;
+    }
+    
+    h1 {
+        font-size: 1.8rem;
     }
 }
