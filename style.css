@@ -1,3 +1,9 @@
+/* Nuclear option to override conflicts */
+.logo {
+    width: 150px !important;
+    height: 150px !important;
+    max-width: none !important; /* Prevents mobile overrides */
+}
 /* ===== GLOBAL LOGO STYLES (applies to ALL pages) ===== */
 .logo-container {
     text-align: center;
