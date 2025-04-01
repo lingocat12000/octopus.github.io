@@ -11,8 +11,8 @@
 }
 
 .logo {
-    width: 150px;   /* Fixed size */
-    height: 150px;  /* Fixed size */
+    width: 175px;   /* Fixed size */
+    height: 175px;  /* Fixed size */
     object-fit: contain; /* Prevents distortion */
     display: block;
     margin: 0 auto; /* Centers the logo */
