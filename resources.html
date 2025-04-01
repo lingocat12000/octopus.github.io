@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Learning Resources | octopusbrains.fun</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" href="logo.png" type="image/png">
+</head>
+<body>
+    <!-- Logo Header -->
+    <header class="logo-header">
+        <a href="index.html" class="logo-link">
+            <img src="logo.png" alt="Home" class="logo">
+        </a>
+    </header>
+
+    <nav class="main-nav">
+        <a href="index.html" class="btn">Home</a>
+        <a href="about.html" class="btn">About</a>
+    </nav>
+
+    <div class="container">
+        <h1>Our Classroom Resources</h1>
+        
+        <div class="resource-grid">
+            <!-- Khan Academy Card -->
+            <div class="resource-card">
+                <img src="https://cdn.kastatic.org/images/khan-logo-dark-background-2.png" alt="Khan Academy" class="resource-logo">
+                <h2>Our Khan Academy</h2>
+                <p>Join our math and science lessons</p>
+                <!-- REPLACE WITH YOUR LINK -->
+                <a href="https://www.khanacademy.org/join/YOUR_CLASS_CODE" 
+                   target="_blank" 
+                   class="resource-btn">
+                   Join Our Class
+                </a>
+            </div>
+            
+            <!-- Quizlet Card -->
+            <div class="resource-card">
+                <img src="https://quizlet.com/cdn-cgi/image/f=auto,fit=cover,h=200,onerror=redirect,w=240/https://quizlet.com/_next/static/media/quizlet-logo.4cc59a73.svg" 
+                     alt="Quizlet" class="resource-logo">
+                <h2>Our Quizlet Sets</h2>
+                <p>Study our weekly vocabulary</p>
+                <!-- REPLACE WITH YOUR LINK -->
+                <a href="https://quizlet.com/YOUR_USERNAME/folders/your-class" 
+                   target="_blank" 
+                   class="resource-btn">
+                   View Flashcards
+                </a>
+            </div>
+            
+            <!-- Epic Card -->
+            <div class="resource-card">
+                <img src="https://www.getepic.com/static/epic-logo-square.svg" 
+                     alt="Epic" class="resource-logo">
+                <h2>Our Epic Library</h2>
+                <p>Books I've selected for you</p>
+                <!-- REPLACE WITH YOUR LINK -->
+                <a href="https://www.getepic.com/students?classCode=YOUR_CODE" 
+                   target="_blank" 
+                   class="resource-btn">
+                   Enter Classroom
+                </a>
+            </div>
+            
+            <!-- Google Classroom Card -->
+            <div class="resource-card">
+                <img src="https://www.gstatic.com/classroom/logo_square_rounded.svg" 
+                     alt="Google Classroom" class="resource-logo">
+                <h2>Our Google Classroom</h2>
+                <p>Daily assignments and materials</p>
+                <!-- REPLACE WITH YOUR LINK -->
+                <a href="https://classroom.google.com/c/YOUR_CLASS_ID" 
+                   target="_blank" 
+                   class="resource-btn">
+                   Go to Classroom
+                </a>
+            </div>
+        </div>
+        
+        <div class="instructions">
+            <h3>How to join our classes:</h3>
+            <ol>
+                <li>Click any button above</li>
+                <li>Sign in with your school account</li>
+                <li>Use our class code: <strong>YOUR_CODE_HERE</strong></li>
+            </ol>
+        </div>
+    </div>
+
+    <style>
+        /* ADD TO YOUR EXISTING STYLE.CSS */
+        .resource-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 25px;
+            margin: 30px 0;
+        }
+        
+        .resource-card {
+            background: white;
+            border-radius: 15px;
+            padding: 25px;
+            text-align: center;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            border: 2px solid #e2f0fd;
+        }
+        
+        .resource-logo {
+            height: 70px;
+            width: auto;
+            margin: 0 auto 15px;
+        }
+        
+        .resource-btn {
+            display: inline-block;
+            background: #4CAF50;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 50px;
+            text-decoration: none;
+            margin-top: 15px;
+            font-weight: bold;
+        }
+        
+        .instructions {
+            background: #f0f9ff;
+            padding: 20px;
+            border-radius: 10px;
+            margin-top: 30px;
+        }
+    </style>
+</body>
+</html>
