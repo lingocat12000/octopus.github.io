@@ -6,30 +6,122 @@
     <title>Spelling Practice | octopusbrains.fun</title>
     <link rel="stylesheet" href="style.css">
     <link rel="icon" href="logo.png" type="image/png">
+    <style>
+        /* CYOA Specific Styles - Matches your existing design */
+        .cyoa-section {
+            background: #f8f9fa;
+            border-radius: 12px;
+            padding: 2rem;
+            margin: 2rem auto;
+            max-width: 1000px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+            border-top: 4px solid #4a6fa5;
+        }
+
+        .cyoa-header {
+            text-align: center;
+            margin-bottom: 1.5rem;
+        }
+
+        .cyoa-header h2 {
+            color: #4a6fa5;
+            font-size: 1.8rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .cyoa-header p {
+            color: #666;
+            font-size: 1.1rem;
+        }
+
+        .cyoa-card {
+            background: white;
+            border-radius: 10px;
+            padding: 1.5rem;
+            margin: 1rem 0;
+            display: flex;
+            align-items: center;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+            transition: transform 0.3s ease;
+        }
+
+        .cyoa-card:hover {
+            transform: translateY(-3px);
+        }
+
+        .cyoa-icon {
+            width: 80px;
+            height: 80px;
+            margin-right: 1.5rem;
+            object-fit: contain;
+        }
+
+        .cyoa-content {
+            flex: 1;
+        }
+
+        .cyoa-content h3 {
+            color: #333;
+            margin-top: 0;
+            margin-bottom: 0.5rem;
+        }
+
+        .cyoa-content p {
+            color: #666;
+            margin-bottom: 1rem;
+        }
+
+        .cyoa-btn {
+            display: inline-block;
+            background: #4a6fa5;
+            color: white;
+            padding: 0.6rem 1.2rem;
+            border-radius: 6px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: background 0.3s;
+        }
+
+        .cyoa-btn:hover {
+            background: #3a5a80;
+        }
+
+        @media (max-width: 768px) {
+            .cyoa-card {
+                flex-direction: column;
+                text-align: center;
+            }
+            .cyoa-icon {
+                margin-right: 0;
+                margin-bottom: 1rem;
+            }
+        }
+    </style>
 </head>
 <body>
-    <!-- Logo Header - Add this to ALL pages EXCEPT about.html -->
-<header class="logo-header">
-    <a href="index.html" class="logo-link">
-        <img src="logo.png" alt="Octopus Brains Home" class="logo">
-    </a>
-</header>
+    <!-- Logo Header -->
+    <header class="logo-header">
+        <a href="index.html" class="logo-link">
+            <img src="logo.png" alt="Octopus Brains Home" class="logo">
+        </a>
+    </header>
+    
     <nav class="main-nav no-print">
         <a href="about.html" class="btn">About</a>
-        <a href="resources.html" class="btn btn-resources">📚 Resources</a> <!-- Added btn-resources class -->
+        <a href="resources.html" class="btn btn-resources">📚 Resources</a>
     </nav>
 
     <div class="container">
         <div class="header-container">
             <h1>Welcome English Learners!</h1>
-            <p class="welcome-message"> <!-- This already had the correct class -->
+            <p class="welcome-message">
                 Practice your weekly spelling words through fun activities!<br>
                 Families can use this site to help students with assignments, play word games, and find learning resources.
             </p>
         </div>
 
-        <div class="content-grid"> <!-- This already had the correct class -->
-            <div class="practice-card"> <!-- Changed from word-practice-card -->
+        <div class="content-grid">
+            <div class="practice-card">
                 <h2>Start Your Practice</h2>
                 <form id="wordForm">
                     <div id="wordInputs">
@@ -40,29 +132,59 @@
                     
                     <div class="button-group">
                         <button type="button" id="addWordBtn" class="btn">+ Add Word</button>
-                        <button type="submit" id="submitBtn" class="btn btn-resources">Get Definitions</button> <!-- Added btn-resources -->
+                        <button type="submit" id="submitBtn" class="btn btn-resources">Get Definitions</button>
                     </div>
                 </form>
             </div>
 
-            <div class="practice-card"> <!-- Changed from activities-card -->
+            <div class="practice-card">
                 <h2>Learning Activities</h2>
                 <div class="activities">
-                    <a href="match.html" class="activity-btn btn-resources"> <!-- Added btn-resources -->
+                    <a href="match.html" class="activity-btn btn-resources">
                         <span class="emoji">📸</span>
                         <span class="text">Match Words to Photos</span>
                     </a>
-                    <a href="sentences.html" class="activity-btn btn-resources"> <!-- Added btn-resources -->
+                    <a href="sentences.html" class="activity-btn btn-resources">
                         <span class="emoji">✏️</span>
                         <span class="text">Write Sentences</span>
                     </a>
-                    <a href="story.html" class="activity-btn btn-resources"> <!-- Added btn-resources -->
+                    <a href="story.html" class="activity-btn btn-resources">
                         <span class="emoji">📖</span>
                         <span class="text">Create Silly Story</span>
                     </a>
                 </div>
             </div>
         </div>
+
+        <!-- NEW STANDALONE CYOA SECTION -->
+        <section class="cyoa-section">
+            <div class="cyoa-header">
+                <h2>Detective Adventure Game</h2>
+                <p>Solve mysteries while practicing your English skills!</p>
+            </div>
+            
+            <div class="cyoa-card">
+                <img src="images/cyoa-icon.png" alt="Detective game icon" class="cyoa-icon">
+                <div class="cyoa-content">
+                    <h3>The Case of the Missing Lunch Money</h3>
+                    <p>Help Max and Kris solve this classroom mystery! Make choices, find clues, and discover who took Sam's money in this interactive story.</p>
+                    <div class="cyoa-meta">
+                        <span class="duration">⏱️ 10-15 minute activity</span>
+                        <span class="level">📚 Grade 3-5 reading level</span>
+                    </div>
+                    <a href="cyoa.html" class="cyoa-btn">Start Solving →</a>
+                </div>
+            </div>
+            
+            <div class="cyoa-card">
+                <img src="images/coming-soon-icon.png" alt="Coming soon" class="cyoa-icon">
+                <div class="cyoa-content">
+                    <h3>More Adventures Coming Soon!</h3>
+                    <p>We're creating new mystery stories where your choices change what happens next. Check back for updates!</p>
+                    <a href="resources.html#games" class="cyoa-btn">See All Games →</a>
+                </div>
+            </div>
+        </section>
 
         <div id="definitions"></div>
     </div>
