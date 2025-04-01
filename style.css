@@ -1,3 +1,21 @@
+/* ===== GLOBAL LOGO STYLES (applies to ALL pages) ===== */
+.logo-container {
+    text-align: center;
+    margin: 20px 0;
+}
+
+.logo {
+    width: 150px;   /* Fixed size */
+    height: 150px;  /* Fixed size */
+    object-fit: contain; /* Prevents distortion */
+    display: block;
+    margin: 0 auto; /* Centers the logo */
+    transition: transform 0.3s ease; /* Optional hover effect */
+}
+
+.logo:hover {
+    transform: scale(1.05); /* Optional animation */
+}
 /* ===== BASE STYLES ===== */
 body {
     font-family: 'Comic Sans MS', 'Chalkboard SE', 'Marker Felt', sans-serif;
