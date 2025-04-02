@@ -86,6 +86,14 @@
             background: #3a5a80;
         }
 
+        .cyoa-meta {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 1rem;
+            font-size: 0.9rem;
+            color: #777;
+        }
+
         @media (max-width: 768px) {
             .cyoa-card {
                 flex-direction: column;
@@ -94,6 +102,10 @@
             .cyoa-icon {
                 margin-right: 0;
                 margin-bottom: 1rem;
+            }
+            .cyoa-meta {
+                flex-direction: column;
+                gap: 0.5rem;
             }
         }
     </style>
@@ -156,11 +168,11 @@
             </div>
         </div>
 
-        <!-- NEW STANDALONE CYOA SECTION -->
+        <!-- UPDATED CYOA SECTION WITH NEW ACTIVITY -->
         <section class="cyoa-section">
             <div class="cyoa-header">
-                <h2>Detective Adventure Game</h2>
-                <p>Solve mysteries while practicing your English skills!</p>
+                <h2>Choose Your Adventure</h2>
+                <p>Interactive stories that help you practice English while having fun!</p>
             </div>
             
             <div class="cyoa-card">
@@ -177,10 +189,23 @@
             </div>
             
             <div class="cyoa-card">
+                <img src="images/time-capsule-icon.png" alt="Time Capsule icon" class="cyoa-icon">
+                <div class="cyoa-content">
+                    <h3>The Mystery Time Capsule</h3>
+                    <p>Discover a hidden time capsule from the past! Your choices will reveal secrets about your school's history while practicing reading comprehension.</p>
+                    <div class="cyoa-meta">
+                        <span class="duration">⏱️ 15-20 minute activity</span>
+                        <span class="level">📚 Grade 4-6 reading level</span>
+                    </div>
+                    <a href="cyoa-time-capsule.html" class="cyoa-btn">Open the Capsule →</a>
+                </div>
+            </div>
+            
+            <div class="cyoa-card">
                 <img src="images/coming-soon-icon.png" alt="Coming soon" class="cyoa-icon">
                 <div class="cyoa-content">
                     <h3>More Adventures Coming Soon!</h3>
-                    <p>We're creating new mystery stories where your choices change what happens next. Check back for updates!</p>
+                    <p>We're creating new interactive stories where your choices change what happens next. Check back for updates!</p>
                     <a href="resources.html#games" class="cyoa-btn">See All Games →</a>
                 </div>
             </div>
