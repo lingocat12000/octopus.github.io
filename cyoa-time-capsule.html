@@ -1,0 +1,997 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Case of the Missing Time Capsule</title>
+    <style>
+        body {
+            font-family: 'Courier New', monospace;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f5f5f5;
+            color: #333;
+            line-height: 1.6;
+        }
+        h1, h2, h3 {
+            color: #8B4513;
+        }
+        .chapter {
+            background-color: white;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            margin-bottom: 20px;
+        }
+        .choice {
+            background-color: #f0e6cc;
+            padding: 10px;
+            margin: 10px 0;
+            border-left: 4px solid #8B4513;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        .choice:hover {
+            background-color: #e6d8b5;
+        }
+        .question {
+            background-color: #e6f7ff;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 5px;
+            border-left: 4px solid #0066cc;
+        }
+        .feedback {
+            margin-top: 10px;
+            padding: 10px;
+            border-radius: 5px;
+            display: none;
+        }
+        .correct {
+            background-color: #e6ffe6;
+            border-left: 4px solid #00cc00;
+        }
+        .incorrect {
+            background-color: #ffe6e6;
+            border-left: 4px solid #cc0000;
+        }
+        button {
+            background-color: #8B4513;
+            color: white;
+            border: none;
+            padding: 8px 15px;
+            border-radius: 3px;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+        button:hover {
+            background-color: #a0522d;
+        }
+        .hidden {
+            display: none;
+        }
+        .evidence {
+            font-weight: bold;
+            color: #0066cc;
+        }
+    </style>
+</head>
+<body>
+    <h1>The Case of the Missing Time Capsule</h1>
+    
+    <div id="chapter-container">
+        <!-- Chapters will be dynamically loaded here -->
+    </div>
+
+    <script>
+        // Story data
+        const chapters = {
+            "1": {
+                title: "The Mysterious Disappearance",
+                content: `The Founder's Day banner snapped like a firecracker above your head as you raced into Oakwood Elementary's courtyard. Your backpack bounced against your shoulders - inside was the special detective notebook you'd packed last night, full of blank pages waiting to be filled with clues. Today was supposed to be the most exciting day in Oakwood's history: the unearthing of the school's 50-year-old time capsule!
+
+But something was wrong.
+
+Where the round metal plaque marked "Time Capsule - Buried 1974" should have been, there was only a jagged hole in the concrete. Fresh dirt clumps dotted the pavement like chocolate sprinkles on ice cream. The shovel that was supposed to be used for the ceremony lay abandoned nearby, its blade still clean - whoever did this brought their own tools.
+
+Principal Harris stood statue-still by the hole, her usually perfect bun coming loose. Her fingers clutched a walkie-talkie so tightly her knuckles turned white. "It's gone," she whispered, her breath making little clouds in the chilly morning air.
+
+The night janitor, Mr. O'Reilly, shuffled his feet nearby. His flashlight swung wildly as he pointed toward the playground. "Saw some shadows slinking around near the swings... must've been about midnight. Thought it was just raccoons again." His voice dropped lower. "Heard metal scraping too."
+
+You knelt beside the hole, your detective senses tingling. Three things jumped out at you:
+
+1. <span class="evidence">Glittering screw holes</span> where the plaque had been pried up (someone strong or using tools)
+
+2. <span class="evidence">Perfect rectangle shape</span> (they knew exactly where to dig)
+
+3. <span class="evidence">Single set of footprints</span> leading toward the back gate (but none returning...)
+
+A crowd of students began gathering behind you, their excited Founder's Day chatter turning to confused murmurs. You swallowed hard. This wasn't just missing homework or a stolen lunchbox - this was Oakwood's history vanishing in one night!`,
+                questions: [
+                    {
+                        question: "What evidence proves the thief used tools to steal the capsule?",
+                        options: [
+                            { text: "\"Fresh dirt clumps dotted the pavement\" (shows digging)", correct: false, feedback: "While this shows digging happened, it doesn't specifically prove tool use." },
+                            { text: "\"Glittering screw holes where the plaque had been pried up\"", correct: true, feedback: "Correct! The screw holes show the plaque was pried up with tools." },
+                            { text: "\"The shovel that was supposed to be used for the ceremony lay abandoned\" (red herring)", correct: false, feedback: "This is actually a distraction - the clean shovel shows they didn't use this tool." },
+                            { text: "\"Mr. O'Reilly's flashlight swung wildly\" (unrelated to tools)", correct: false, feedback: "This detail is about the janitor's actions, not tool evidence." }
+                        ]
+                    },
+                    {
+                        question: "Which detail confirms the theft happened at night?",
+                        options: [
+                            { text: "\"The banner snapped in the wind\" (morning detail)", correct: false, feedback: "This describes the current morning scene, not the time of theft." },
+                            { text: "\"Mr. O'Reilly saw shadows near the swings... must've been about midnight\"", correct: true, feedback: "Correct! The janitor's observation confirms it happened at night." },
+                            { text: "\"Principal Harris's breath made little clouds\" (morning chill)", correct: false, feedback: "This shows it's morning now, not when the theft occurred." },
+                            { text: "\"Students began gathering\" (daytime activity)", correct: false, feedback: "This happens after the discovery, not during the theft." }
+                        ]
+                    }
+                ],
+                choices: [
+                    { text: "A) \"Let's check the security cameras! Maybe they caught the thief on tape.\"", nextChapter: "2" },
+                    { text: "B) \"We should interview witnesses first. Someone might have seen something strange.\"", nextChapter: "3" }
+                ]
+            },
+            "2": {
+                title: "The Glowing Keychain",
+                content: `The security office smelled like someone had burned a whole bag of popcorn and then tried to cover it up with cheap air freshener. Officer Ruiz's cheeks turned pink as he quickly brushed orange cheese dust from his police uniform. "Don't mind the mess," he mumbled, knocking over an empty soda can that rolled under his desk with a clatter.
+
+The monitor flickered to life, showing a black-and-white view of the empty courtyard. The timestamp read 11:30 PM - way past bedtime for any students. Officer Ruiz pressed fast-forward until---
+
+"Wait! Go back!" you shouted, nearly knocking over your chair.
+
+There! A shadowy figure in a baggy hoodie slunk into view, moving like a cartoon villain. They kept glancing over their shoulder as they knelt by the time capsule plaque. With a quick motion, they jammed a crowbar under the metal and---SCRREECH! Even through the silent video, you could almost hear the awful sound of metal prying loose.
+
+The thief yanked out a dusty metal box (much smaller than you'd imagined) and tucked it under their arm like a football. But as they turned to run---CLINK! Something shiny fell from their pocket, bouncing twice on the pavement before coming to rest near the rose bushes.
+
+"Freeze that frame!" you yelled, pointing at the screen. Officer Ruiz hit pause so hard the keyboard jumped.
+
+There, glowing even in the grainy video, was the most beautiful clue yet: a keychain with a pendant shaped like an atom, its tiny green light still blinking. Like a firefly trapped in black-and-white world.
+
+Officer Ruiz whistled. "Well I'll be... that's Ms. Vega's radioactive keychain. She won it at some science fair last year." He scratched his head. "Funny thing is, she was complaining just yesterday about losing it."
+
+You peered closer at the frozen screen. Three new clues jumped out:
+
+1. The thief wore <span class="evidence">black sneakers with red laces</span> (one was untied!)
+
+2. The pendant's light <span class="evidence">blinked in a pattern</span> (..-... like Morse code?)
+
+3. They'd come from the <span class="evidence">science wing</span> direction, not the front gates`,
+                questions: [
+                    {
+                        question: "What proves the keychain belongs to Ms. Vega?",
+                        options: [
+                            { text: "\"Officer Ruiz: 'That's Ms. Vega's radioactive keychain'\"", correct: true, feedback: "Correct! This is direct confirmation from a school official." },
+                            { text: "\"It was found near the science wing\" (location clue)", correct: false, feedback: "While suggestive, this doesn't prove ownership." },
+                            { text: "\"The thief wore black sneakers\" (irrelevant detail)", correct: false, feedback: "This is about the thief's clothing, not the keychain." },
+                            { text: "\"It had a blinking light\" (generic feature)", correct: false, feedback: "Many keychains have lights - this doesn't identify the owner." }
+                        ]
+                    },
+                    {
+                        question: "Which detail suggests the thief came from the science wing?",
+                        options: [
+                            { text: "\"The pendant's light blinked in a pattern\" (keychain feature)", correct: false, feedback: "This describes the keychain, not the thief's path." },
+                            { text: "\"They'd come from the science wing direction, not the front gates\"", correct: true, feedback: "Correct! This explicitly states their direction of approach." },
+                            { text: "\"The video showed a baggy hoodie\" (non-location clue)", correct: false, feedback: "This describes clothing, not location." },
+                            { text: "\"Officer Ruiz brushed cheese dust from his uniform\" (unrelated)", correct: false, feedback: "This is just a character detail." }
+                        ]
+                    }
+                ],
+                choices: [
+                    { text: "A) \"We should search the science lab. Maybe the thief left more clues there!\"", nextChapter: "4" },
+                    { text: "B) \"Let's ask the janitor first. He cleans everywhere and might have seen that keychain.\"", nextChapter: "5" }
+                ]
+            },
+            "3": {
+                title: "The Red Hoodie Clue",
+                content: `The gardening club kids huddled near their tomato plants, their dirt-smudged faces serious as you approached. Maya Rodriguez nearly dropped her watering can when you asked about last night.
+
+"I did see someone!" she said, her sunflower sprouts trembling as she leaned closer. "Right after the sunset bell rang. A person in a red hoodie with white stripes---like the soccer team's uniforms---was sprinting toward the back fence!" She pointed a muddy finger at the playground. "They kept looking behind them like they'd stolen a cookie from the cafeteria!"
+
+Behind her, a tiny first-grader piped up: "I heard clanging noises too! Like a lunchbox full of spoons falling down the stairs!"
+
+You scribbled notes in your detective notebook:
+✏️ Red hoodie (soccer team style)
+✏️ Running toward back fence at sunset
+✏️ Suspicious clanging sounds
+
+Then you noticed something even better---muddy footprints! They started near the time capsule hole, weaved past the jungle gym (with a scuff mark where someone might've tripped), and disappeared through the back gate.
+
+Mr. Granger, the groundskeeper, stomped over with his rake. "That gate was wide open this morning!" He jabbed at the broken lock with a grimy fingernail. "I chain it up every night at six o'clock sharp. Someone wanted to get back in after hours."
+
+You knelt beside the footprints. The tread pattern looked familiar---zigzag grooves, just like the shoes the soccer team wore for traction on wet fields. And the mud was still slightly damp!
+
+A flash of red near the woods caught your eye. Was that...? You squinted. Just a crumpled soda can, but it gave you an idea.`,
+                questions: [
+                    {
+                        question: "What evidence links the suspect to the soccer team?",
+                        options: [
+                            { text: "\"A red hoodie with white stripes---like the soccer team's uniforms\"", correct: true, feedback: "Correct! This directly compares the clothing to team uniforms." },
+                            { text: "\"Muddy footprints weaved past the jungle gym\" (location only)", correct: false, feedback: "This shows path, not team connection." },
+                            { text: "\"Mr. Granger stomped over with his rake\" (unrelated character)", correct: false, feedback: "This is about the groundskeeper's actions." },
+                            { text: "\"A flash of red near the woods\" (color alone isn't proof)", correct: false, feedback: "Color alone doesn't prove team connection." }
+                        ]
+                    },
+                    {
+                        question: "Why is the broken gate lock suspicious?",
+                        options: [
+                            { text: "\"Mr. Granger: 'I chain it up every night at six o'clock sharp'\"", correct: true, feedback: "Correct! This proves the lock was intentionally violated." },
+                            { text: "\"The gate was painted blue last year\" (irrelevant detail)", correct: false, feedback: "Color doesn't relate to the lock's status." },
+                            { text: "\"Footprints led toward the woods\" (doesn't explain lock)", correct: false, feedback: "This shows direction, not lock tampering." },
+                            { text: "\"A first-grader heard clanging noises\" (sound clue only)", correct: false, feedback: "Sounds don't explain the broken lock." }
+                        ]
+                    }
+                ],
+                choices: [
+                    { text: "A) \"Let's track the red hoodie lead! Maybe the soccer team knows who was here last night.\"", nextChapter: "6" },
+                    { text: "B) \"These footprints are fresh! We should follow them before the rain washes them away.\"", nextChapter: "7" }
+                ]
+            },
+            "4": {
+                title: "CHAPTER 4: The Science Teacher's Alibi",
+                content: `The door to Ms. Vega's science lab creaked open, releasing a wave of strange smells---vinegar, something burning, and a hint of peppermint. Beakers bubbled on a counter, and a poster of the solar system flapped where one corner had come loose. Ms. Vega stood at her desk, her wild curly hair tied back with what looked like a rubber band made of twisted paperclips.
+
+When you held up the glowing keychain, her eyebrows shot up so high they nearly disappeared under her bangs. "My quantum atom keychain!" she gasped, snatching it from your hand. "This was stolen from my desk drawer three days ago!" She turned it over, inspecting it like a rare gem. "Where did you---? Wait. Does this have something to do with the missing time capsule?"
+
+You nodded, watching as she absentmindedly tapped the keychain against her chin. The green light pulsed softly, casting weird shadows on the walls. While she muttered about "irresponsible lab behavior," your eyes wandered to her cluttered desk. Under her microscope, barely visible beneath a stack of graded papers, was a crumpled note. You carefully tugged it free.
+
+The paper was torn at the bottom, but the words were clear:
+
+*"Midnight. Old oak. Bring the---"*
+
+The rest was missing. Your detective brain buzzed. Was this a meeting place? A hiding spot?
+
+"Did you write this?" you asked, holding it up.
+
+Ms. Vega adjusted her glasses and frowned. "No. And I've never seen it before." She peered closer. "Hmm. Those numbers at the bottom... 629.45. That looks like a library call number."
+
+You examined the note again. The handwriting was neat but hurried, like someone had scribbled it in a rush. A faint smudge of dirt marked one corner, and the paper smelled slightly like... grass?
+
+Three clues stood out:
+1️⃣ The numbers could lead to a book in the library.
+2️⃣ The old oak had to be the giant tree near the playground.
+3️⃣ Someone had torn off part of the message---were they hiding something?
+
+Ms. Vega sighed and tucked the keychain into her pocket. "If you find out who took this, let me know. I've got a few science experiments I'd like to try on them." She grinned, and you weren't entirely sure she was joking.`,
+                questions: [
+                    {
+                        question: "What suggests the note was hidden intentionally?",
+                        options: [
+                            { text: "\"Barely visible beneath a stack of graded papers\"", correct: true, feedback: "Correct! The concealment suggests intentional hiding." },
+                            { text: "\"Ms. Vega adjusted her glasses\"", correct: false, feedback: "This is just a character action, not evidence of hiding." },
+                            { text: "\"The paper smelled slightly like grass\"", correct: false, feedback: "This could be from many situations, not necessarily hiding." },
+                            { text: "\"The lab smelled like vinegar\"", correct: false, feedback: "This is just environmental description." }
+                        ]
+                    },
+                    {
+                        question: "Which detail connects the note to the library?",
+                        options: [
+                            { text: "\"Ms. Vega: 'Those numbers... 629.45. That looks like a library call number'\"", correct: true, feedback: "Correct! This directly links to the library system." },
+                            { text: "\"The solar system poster flapped\"", correct: false, feedback: "This is just setting description." },
+                            { text: "\"The keychain pulsed softly\"", correct: false, feedback: "This is about the keychain, not the note." },
+                            { text: "\"The handwriting was neat\"", correct: false, feedback: "This describes style, not content." }
+                        ]
+                    }
+                ],
+                choices: [
+                    { text: "► A) \"I'll decode the note at the library. Maybe the book it's linked to has answers!\" (Turn to Chapter 8)", nextChapter: "8" },
+                    { text: "► B) \"The old oak tree sounds suspicious. Let's check it out first.\" (Turn to Chapter 9)", nextChapter: "9" }
+                ]
+            },
+            "5": {
+                title: "CHAPTER 5: The Janitor's Secret",
+                content: `The squeak of wet sneakers echoed through the empty gymnasium as you followed the trail of mop water. Mr. O'Reilly, the school janitor, was pushing his bucket in slow circles, his faded blue uniform damp with soapy splashes. When you stepped in front of him, he jumped like you'd shouted "BOO!"
+
+"Mr. O'Reilly," you said, holding up the glowing keychain, "have you seen---"
+
+"Nope," he interrupted too fast, his eyes darting to the emergency exit. "Don't know nothing about that." He scrubbed at an invisible spot on the floor. "Shouldn't you be in class?"
+
+You frowned. His boots---usually caked in mud---were shiny clean today. Too clean, like he'd polished them. But when you glanced behind him, your pulse quickened. Fresh muddy footprints led down the basement stairs, their zigzag tread marks matching the ones by the time capsule!
+
+"Uh," you said, pointing, "whose footprints are those?"
+
+Mr. O'Reilly's mop handle clattered to the floor. Sweat beaded on his forehead as he wiped his hands on his pants. "Kids these days," he muttered. "Always tracking in dirt..."
+
+You crouched beside the prints. Three things didn't add up:
+1️⃣ The mud was still wet (someone had come this way recently!)
+2️⃣ The prints were bigger than Mr. O'Reilly's boots
+3️⃣ A shiny button glinted in the muck---like from a fancy coat
+
+"Who else has basement keys?" you pressed.
+
+The janitor tugged at his collar. "Just... just me and Principal Harris. And maybe---" He cut himself off.
+
+A door slammed somewhere down the hall. Mr. O'Reilly flinched, then grabbed your shoulder. "Listen, kid. Some secrets are buried for a reason." His whisper smelled like coffee and peppermints. "That basement's no place for students."`,
+                questions: [
+                    {
+                        question: "What contradicts the janitor's claim of innocence?",
+                        options: [
+                            { text: "\"His boots---usually caked in mud---were shiny clean today\" vs. \"Fresh muddy footprints\"", correct: true, feedback: "Correct! This mismatch suggests he's hiding something." },
+                            { text: "\"He was pushing his bucket in slow circles\"", correct: false, feedback: "This is normal janitor behavior." },
+                            { text: "\"His uniform was damp with soapy splashes\"", correct: false, feedback: "This is expected for someone mopping." },
+                            { text: "\"He jumped when approached\"", correct: false, feedback: "Being startled isn't proof of guilt." }
+                        ]
+                    },
+                    {
+                        question: "What evidence suggests the basement is dangerous?",
+                        options: [
+                            { text: "\"Mr. O'Reilly: 'That basement's no place for students'\"", correct: true, feedback: "Correct! This is a direct warning." },
+                            { text: "\"The footprints had zigzag tread marks\"", correct: false, feedback: "This describes shoes, not danger." },
+                            { text: "\"A door slammed somewhere\"", correct: false, feedback: "This is just an ambient sound." },
+                            { text: "\"He smelled like coffee\"", correct: false, feedback: "This is a character detail." }
+                        ]
+                    }
+                ],
+                choices: [
+                    { text: "► A) \"Those footprints are our best clue! I'm following them---who knows where they lead?\" (Turn to Chapter 10)", nextChapter: "10" },
+                    { text: "► B) \"This is too weird. I'm telling Principal Harris---she needs to know someone's sneaking around!\" (Turn to Chapter 11)", nextChapter: "11" }
+                ]
+            },
+            "6": {
+                title: "CHAPTER 6: The Soccer Team Connection",
+                content: `The soccer team's locker room smelled like a mix of sweat, oranges, and too much body spray. You wrinkled your nose as you tiptoed past rows of blue lockers, their doors hanging open like hungry metal mouths. The room was empty---everyone was at practice---except for one thing:
+
+A red hoodie with white stripes lay crumpled in the corner, one sleeve twisted like it had been yanked off in a hurry.
+
+You picked it up, and something clinked against the floor. A shiny silver button with the Oakwood Elementary crest was caught in the zipper. Your breath hitched---only student council members wore these special buttons on their blazers!
+
+Just then, Coach Simmons's whistle shrieked right behind you. "Hey! No one's allowed in here during---" He stopped when he saw the hoodie in your hands. "Oh. That's Liam's." He scratched his stubbly chin. "Kid's always forgetting stuff. Probably left it after yesterday's game."
+
+"Liam Murphy?" you asked. "The student council vice president?"
+
+"Yep, same kid." Coach tossed a soccer ball from hand to hand. "Good goalie, too. Though he's been acting weird lately---missed practice Monday, showed up all out of breath."
+
+You examined the hoodie closer. Three clues stood out:
+1️⃣ Grass stains on the elbows (like someone had been crawling on the field)
+2️⃣ A pocket full of gravel (from the courtyard near the time capsule?)
+3️⃣ That student council button---why was it torn off?
+
+Coach frowned at the button. "Huh. Liam's usually so careful with that blazer. Must've been in a real hurry."
+
+From the field outside, you heard shouts and the thump of a soccer ball. Liam was out there right now. But so was the student council office, just down the hall...`,
+                questions: [
+                    {
+                        question: "What proves Liam's hoodie was removed hastily?",
+                        options: [
+                            { text: "\"One sleeve twisted like it had been yanked off in a hurry\"", correct: true, feedback: "Correct! The physical evidence shows rushed removal." },
+                            { text: "\"A shiny silver button was caught in the zipper\"", correct: false, feedback: "This is a separate clue about the button." },
+                            { text: "\"The room smelled like oranges\"", correct: false, feedback: "This is just environmental description." },
+                            { text: "\"Coach scratched his stubbly chin\"", correct: false, feedback: "This is a character mannerism." }
+                        ]
+                    },
+                    {
+                        question: "Which detail suggests Liam was near the crime scene?",
+                        options: [
+                            { text: "\"Grass stains on the elbows (like crawling)\"", correct: true, feedback: "Correct! This suggests physical activity near the grounds." },
+                            { text: "\"A pocket full of gravel\"", correct: false, feedback: "This could be from anywhere." },
+                            { text: "\"He missed practice Monday\"", correct: false, feedback: "This is just a timing clue." },
+                            { text: "\"The hoodie was red\"", correct: false, feedback: "Color alone isn't evidence." }
+                        ]
+                    }
+                ],
+                choices: [
+                    { text: "► A) \"I need to talk to Liam. If he was near the time capsule, he might know something!\" (Turn to Chapter 12)", nextChapter: "12" },
+                    { text: "► B) \"First, I'm checking the student council office. That button didn't rip itself off...\" (Turn to Chapter 13)", nextChapter: "13" }
+                ]
+            },
+            "7": {
+                title: "CHAPTER 7: The Muddy Trail",
+                content: `The woods behind Oakwood Elementary swallowed you whole the moment you stepped past the broken fence. Towering oaks blocked out the sun, leaving the ground speckled with strange, dancing shadows. The air smelled like wet earth and something sweet---maybe wild berries.
+
+The muddy footprints squished under your sneakers, still fresh enough to leave deep marks. Whoever made them had been running---the prints were far apart, with long scrapes where they'd slipped. You followed them past:
+
+1️⃣ A broken spiderweb (recently torn)
+2️⃣ A scattered pile of acorns (like someone kicked them)
+3️⃣ A scratched-up tree with bark peeling off in chunks
+
+Then---the trail vanished.
+
+Right at a massive fallen tree trunk, the footprints disappeared. The trunk's bark had strange parallel scratches, too straight to be from an animal. Your fingers brushed the marks---they felt rough and fresh.
+
+As you crouched down, something metal glinted in the leaf litter. A locker key! You wiped off the dirt, revealing the number "217" stamped on its side. It was warm, like it had been in someone's pocket recently.
+
+CRACK.
+
+The sound of a breaking twig made your heart leap into your throat. You spun around just in time to see:
+
+- A flash of red fabric (like the soccer hoodie?)
+- A shoe with zigzag soles (matching the muddy prints!)
+- The figure ducking behind an oak tree
+
+Your hands shook. This was it---the thief was right there! But the key in your palm felt important too...`,
+                questions: [
+                    {
+                        question: "What evidence shows the thief paused at the fallen tree?",
+                        options: [
+                            { text: "\"The trunk's bark had strange parallel scratches, too straight to be from an animal\"", correct: true, feedback: "Correct! These marks suggest human activity." },
+                            { text: "\"A broken spiderweb\"", correct: false, feedback: "This could be natural." },
+                            { text: "\"The air smelled like wild berries\"", correct: false, feedback: "This is just setting description." },
+                            { text: "\"The key was warm\"", correct: false, feedback: "This describes the key's state." }
+                        ]
+                    },
+                    {
+                        question: "What confirms the key is from a school locker?",
+                        options: [
+                            { text: "\"The number '217' stamped on its side\"", correct: true, feedback: "Correct! School lockers are numbered this way." },
+                            { text: "\"It was found in leaf litter\"", correct: false, feedback: "This is just location." },
+                            { text: "\"It was metal\"", correct: false, feedback: "Many keys are metal." },
+                            { text: "\"It glinted in the light\"", correct: false, feedback: "This is a visual detail." }
+                        ]
+                    }
+                ],
+                choices: [
+                    { text: "► A) \"I'm chasing them! They won't get away this time!\" (Turn to Chapter 14)", nextChapter: "14" },
+                    { text: "► B) \"This key is a major clue---I need to check locker 217 first!\" (Turn to Chapter 15)", nextChapter: "15" }
+                ]
+            },
+            "8": {
+                title: "CHAPTER 8: The Library Code",
+                content: `The library was so quiet you could hear the tick-tock of the wall clock echoing between the bookshelves. Dust particles floated in the slanted sunlight as you tiptoed past the "HISTORY" section. Your fingers trailed along the spines of old yearbooks until you found it: Oakwood Elementary 1974, its cover faded to a dull maroon.
+
+The book creaked like it hadn't been opened in years. As you flipped to page 629.45 (just like Ms. Vega's note said!), a brittle photograph fluttered into your lap. It showed a group of kids in bell-bottom jeans burying---
+
+"Wait... two capsules?" you whispered.
+
+The black-and-white photo clearly showed:
+1️⃣ A fancy metal box (students smiling as they buried it)
+2️⃣ A nearly identical box nearby (being hidden behind some bushes)
+
+The caption below read: "Time capsule and decoy placed for security. Only Principal McGee knows the true location." Your hands trembled. No one had ever mentioned a decoy!
+
+As you turned the photo over, a handwritten note in purple ink screamed up at you:
+
+*"The real one is where the shadow points at noon."*
+
+The words looked recently written---the ink hadn't even fully faded! You glanced at the library clock: 11:47 AM. Just thirteen minutes until the clue might make sense!
+
+But something else bothered you...
+
+- The photo had five fingerprints smudging one corner (someone else had looked at this recently!)
+- The decoy capsule's hiding spot showed a distinctive oak tree in the background (still on school property!)
+- The handwriting matched no teacher you knew (spiky letters with weirdly perfect dots over the i's)
+
+Mrs. Pepperton, the librarian, suddenly appeared behind you. "Find anything interesting?" she asked, her glasses glinting. When she saw the photo, her smile tightened. "Oh my. That's supposed to be in the archives." She reached for it---`,
+                questions: [
+                    {
+                        question: "What proves the existence of a decoy capsule?",
+                        options: [
+                            { text: "\"The 1974 photo showed a fancy metal box and a nearly identical box hidden behind bushes\"", correct: true, feedback: "Correct! The visual evidence is definitive." },
+                            { text: "\"The caption mentioned 'security'\"", correct: false, feedback: "This is too vague without the photo." },
+                            { text: "\"The ink was purple\"", correct: false, feedback: "This describes the note's appearance." },
+                            { text: "\"Mrs. Pepperton reached for it\"", correct: false, feedback: "This is a character action." }
+                        ]
+                    },
+                    {
+                        question: "What suggests the note was added recently?",
+                        options: [
+                            { text: "\"The ink hadn't even fully faded\"", correct: true, feedback: "Correct! Fresh ink indicates recent writing." },
+                            { text: "\"The photo was brittle\"", correct: false, feedback: "This shows the photo is old." },
+                            { text: "\"The clock read 11:47 AM\"", correct: false, feedback: "This is just the current time." },
+                            { text: "\"Dust particles floated in sunlight\"", correct: false, feedback: "This is setting description." }
+                        ]
+                    }
+                ],
+                choices: [
+                    { text: "► A) \"I need to watch the school's shadows at noon---this could lead to the real capsule!\" (Turn to Chapter 16)", nextChapter: "16" },
+                    { text: "► B) \"First, I'm finding that decoy capsule---it might have more clues!\" (Turn to Chapter 17)", nextChapter: "17" }
+                ]
+            },
+            "9": {
+                title: "CHAPTER 9: The Old Oak Tree",
+                content: `The ancient oak tree loomed over the playground like a giant guarding a secret. Its trunk was wider than your armspan, with bark so thick and gnarled it looked like dragon scales. Kneeling beside its massive roots---which twisted into tiny dirt caves perfect for hiding treasures---you noticed something strange:
+
+<span class="evidence">Fresh scratch marks</span> in the soil, as if someone had been digging here recently.
+
+Your fingers plunged into the cool earth, wiggling past pebbles and wriggling worms until---<em>clink!</em> Something smooth and cold met your touch. You pulled out a tarnished <span class="evidence">silver locket</span>, its chain tangled in the roots. The initials "E.R." were engraved in fancy cursive on the front.
+
+With trembling hands, you pried it open. Inside were:
+1️⃣ A <span class="evidence">tiny black-and-white photo</span> of a serious-looking girl (her eyes seemed to follow you!)
+2️⃣ A <span class="evidence">folded map</span> of the school basement, with a red X marking a room labeled "BOILER"
+
+Before you could examine it further, a shower of acorns suddenly rained down on your head.
+
+<em>"Put. That. Back."</em>
+
+The hissed words came from above. Your neck prickled as you slowly looked up.
+
+Perched on the lowest branch like a shadowy owl sat a figure in a <span class="evidence">black hoodie</span>, their face hidden behind sunglasses and a medical mask. One gloved hand gripped the bark so tightly their knuckles turned white.
+
+"You shouldn't be here," they whispered. Their voice sounded familiar, but you couldn't place it---like when someone talks with their mouth full.
+
+Three details jumped out at you:
+🔴 They wore <span class="evidence">red shoelaces</span> (just like the thief's sneakers from the security footage!)
+🔵 Their hoodie pocket bulged with <span class="evidence">something rectangular</span> (a book? A small box?)
+🟢 A <span class="evidence">green keychain pendant</span> dangled from their backpack (just like Ms. Vega's missing one!)
+
+The figure tensed, ready to leap down. Somewhere on the playground, a group of kids started screaming with laughter---but they sounded miles away.`,
+                questions: [
+                    {
+                        question: "What links the locket to Emily Rivers?",
+                        options: [
+                            { text: "\"The initials 'E.R.' engraved on it\"", correct: true, feedback: "Correct! These match Emily Rivers' initials from Chapter 12." },
+                            { text: "\"The chain was tangled in roots\"", correct: false, feedback: "This is just how it was found." },
+                            { text: "\"The photo showed a serious-looking girl\"", correct: false, feedback: "This is too generic to be conclusive." },
+                            { text: "\"A shower of acorns rained down\"", correct: false, feedback: "This is environmental detail." }
+                        ]
+                    },
+                    {
+                        question: "Which detail matches the thief's description?",
+                        options: [
+                            { text: "\"Red shoelaces\"", correct: true, feedback: "Correct! This matches Chapter 2's security footage description." },
+                            { text: "\"Sunglasses and a medical mask\"", correct: false, feedback: "This is part of their disguise now." },
+                            { text: "\"A black hoodie\"", correct: false, feedback: "Too common to be identifying." },
+                            { text: "\"Gloved hand\"", correct: false, feedback: "Not mentioned in original description." }
+                        ]
+                    }
+                ],
+                choices: [
+                    { text: "► A) \"Who are you? Why are you watching me?\" (Stand your ground and confront them) (Turn to Chapter 18)", nextChapter: "18" },
+                    { text: "► B) \"Principal Harris needs to see this---now!\" (Sprint toward the school with the locket) (Turn to Chapter 19)", nextChapter: "19" }
+                ]
+            },
+            "10": {
+                title: "CHAPTER 10: The Basement Clue",
+                content: `The basement stairs groaned with every step, their wooden planks sagging under your weight like they might collapse at any moment. A single flickering lightbulb cast long shadows on the concrete walls, where cobwebs danced in the musty air. The muddy boot prints you'd been following led straight to a rusted metal door marked in peeling red letters:
+
+<strong>"BOILER ROOM --- KEEP OUT<br>AUTHORIZED PERSONNEL ONLY"</strong>
+
+You pressed your face against the grimy window, wiping away years of dust with your sleeve. Inside, sitting in the center of the room like some kind of treasure, was the <span class="evidence">missing time capsule</span>! But something was wrong---terribly wrong.
+
+Surrounding the real capsule were <span class="evidence">twelve identical decoys</span>, arranged in a perfect circle like numbers on a clock. Each one had a different colored sticker: red, blue, yellow, green. A handwritten note taped to the real capsule fluttered in the breeze from a vent:
+
+<em>"Choose wisely. Only one doesn't trigger the alarm."</em>
+
+Your breath came fast as you noticed:
+1. <span class="evidence">Wires</span> snaking from each fake capsule to a blinking control box
+2. A <span class="evidence">digital timer</span> counting down from 5:00 (4:59... 4:58...)
+3. The <span class="evidence">real capsule</span> had a tiny dent near the lock---just like in the old photo!
+
+A sound made you jump---a <span class="evidence">dripping pipe</span> somewhere in the darkness. Or was it footsteps? Your fingers hovered over the doorknob. It was freezing cold, and left your palm damp with condensation.`,
+                questions: [
+                    {
+                        question: "How is the real capsule identified?",
+                        options: [
+                            { text: "\"A tiny dent near the lock---just like in the old photo!\"", correct: true, feedback: "Correct! This unique mark matches historical evidence." },
+                            { text: "\"It sat in the center of the room\"", correct: false, feedback: "Position doesn't prove authenticity." },
+                            { text: "\"It had a green sticker\"", correct: false, feedback: "The stickers are on decoys too." },
+                            { text: "\"Wires snaked from it\"", correct: false, feedback: "All capsules have wires." }
+                        ]
+                    },
+                    {
+                        question: "What creates time pressure?",
+                        options: [
+                            { text: "\"A digital timer counting down from 5:00\"", correct: true, feedback: "Correct! The explicit countdown creates urgency." },
+                            { text: "\"A dripping pipe\"", correct: false, feedback: "This is ambient sound." },
+                            { text: "\"The doorknob was freezing\"", correct: false, feedback: "This is tactile description." },
+                            { text: "\"Cobwebs danced in the air\"", correct: false, feedback: "This is setting detail." }
+                        ]
+                    }
+                ],
+                choices: [
+                    { text: "► A) \"I can solve this! The real capsule must have clues the others don't...\" (Search for identifying marks on the capsules) (Turn to Chapter 20)", nextChapter: "20" },
+                    { text: "► B) \"This is too dangerous---I need backup!\" (Run to find Principal Harris before the timer runs out) (Turn to Chapter 21)", nextChapter: "21" }
+                ]
+            },
+            "11": {
+                title: "CHAPTER 11: The Principal's Reaction",
+                content: `The principal's office smelled like a candy store---peppermints, lemon drops, and something faintly flowery. Sunlight streamed through the blinds, painting stripes across Principal Harris's neat desk. When you placed the glowing green keychain in front of her, her usual warm smile melted like an ice cube in July.
+
+"That's... impossible," she whispered. Her fingers trembled as she picked it up, turning it over and over like she was trying to wake up from a dream. "This keychain was sealed inside the original time capsule fifty years ago. It belonged to my grandfather, Principal McGee."
+
+A grandfather clock in the corner ticked loudly as she opened her top desk drawer with a small key. From beneath a stack of perfect attendance certificates, she pulled out <span class="evidence">an identical keychain</span>---except this one had a <span class="evidence">blue pendant</span> that pulsed softly.
+
+"See?" She placed them side by side. "Green and blue. They were a set. My grandfather kept the blue one, and the green one went in the..." Her voice trailed off as she stared at you. "But if the green one was buried, how is it here now?"
+
+You noticed three strange things:
+1. The <span class="evidence">blue pendant</span> had a tiny crack the green one didn't
+2. A <span class="evidence">photo on the wall</span> showed Principal McGee holding just the blue keychain
+3. The desk drawer had <span class="evidence">fresh scratches</span> around the lock
+
+From the hallway came the sound of hurried footsteps, then silence. Principal Harris quickly closed her hand around both keychains. "This means someone dug up the original capsule long before yesterday," she said quietly. "But why? And where is it now?"`,
+                questions: [
+                    {
+                        question: "What proves the keychain was in the original capsule?",
+                        options: [
+                            { text: "\"Principal Harris: 'This keychain was sealed inside the original time capsule'\"", correct: true, feedback: "Correct! Direct statement from a credible source." },
+                            { text: "\"Her grandfather was Principal McGee\"", correct: false, feedback: "This is backstory, not proof." },
+                            { text: "\"The drawer had fresh scratches\"", correct: false, feedback: "Suggests tampering but not keychain history." },
+                            { text: "\"The blue pendant pulsed softly\"", correct: false, feedback: "This is a feature, not proof." }
+                        ]
+                    },
+                    {
+                        question: "What suggests the drawer was forced open?",
+                        options: [
+                            { text: "\"Fresh scratches around the lock\"", correct: true, feedback: "Correct! Clear evidence of tampering." },
+                            { text: "\"It contained perfect attendance certificates\"", correct: false, feedback: "Contents don't indicate forced entry." },
+                            { text: "\"She used a small key\"", correct: false, feedback: "Normal way to open a drawer." },
+                            { text: "\"The clock ticked loudly\"", correct: false, feedback: "Environmental detail." }
+                        ]
+                    }
+                ],
+                choices: [
+                    { text: "► A) \"Why would your grandfather make two keychains? There must be a secret behind them!\" (Ask about the keychains' history) (Turn to Chapter 22)", nextChapter: "22" },
+                    { text: "► B) \"We need to find that original capsule---whatever's inside must be important!\" (Search for the real 1974 time capsule) (Turn to Chapter 23)", nextChapter: "23" }
+                ]
+            },
+            "12": {
+                title: "CHAPTER 12: Liam's Secret",
+                content: `The soccer field's afternoon sun beat down as you cornered Liam near the goalpost. Sweat dripped from his red hair as he twisted his jersey number---<span class="evidence">#13</span>---into a nervous knot.
+
+"I didn't steal anything!" he blurted before you could speak. His cleats dug into the grass. "But... I did see something weird last night."
+
+He led you to the student council office, empty except for a half-eaten granola bar on the president's desk. With a glance at the door, Liam dropped to his knees near the trophy case. His fingers found a <span class="evidence">loose floorboard</span> you'd never have noticed---its edge worn smooth from years of secret lifting.
+
+Beneath it lay:
+1. A <span class="evidence">yellowed note</span> that smelled like old books:
+   <em>"The tunnels still run under the school. Meet me where it began.---E.R."</em>
+2. A <span class="evidence">rusted key</span> tied to the note with blue string
+3. A <span class="evidence">1974 penny</span> glued to the corner
+
+Liam's voice dropped to a whisper. "E.R. is Emily Rivers. Student council president in 1974---the year they buried the capsule." He pointed to a faded photo on the wall of a serious girl with braids. "I found this when I was hiding my... um... unfinished homework."
+
+You studied the note. The handwriting matched the library photo's back! Three clues stood out:
+✏️ <span class="evidence">Blue string</span> (same color as the principal's keychain)
+✏️ <span class="evidence">"Where it began"</span> (the time capsule spot? The old oak tree?)
+✏️ <span class="evidence">1974 penny</span> (deliberately placed---but why?)
+
+Liam fidgeted with the key. "Last night I saw someone come OUT of the tunnel by the boiler room. They were carrying..." He gulped. "Something shaped like the time capsule, but... older looking?"
+
+Outside, a whistle blew. "That's Coach!" Liam panicked. "I'm late for practice!" He shoved the key into your hand. "Don't tell anyone I showed you this!"`,
+                questions: [
+                    {
+                        question: "What connects the note to the tunnels?",
+                        options: [
+                            { text: "\"The tunnels still run under the school\" (direct quote from note)", correct: true, feedback: "Correct! Explicit mention in the note." },
+                            { text: "\"A 1974 penny was glued to the corner\"", correct: false, feedback: "This is a date clue, not tunnel proof." },
+                            { text: "\"The key was rusted\"", correct: false, feedback: "Shows age but not purpose." },
+                            { text: "\"Liam had red hair\"", correct: false, feedback: "Character trait." }
+                        ]
+                    },
+                    {
+                        question: "What proves Emily Rivers was student council president?",
+                        options: [
+                            { text: "\"A faded photo on the wall of a serious girl with braids\"", correct: true, feedback: "Correct! Visual evidence with Liam's confirmation." },
+                            { text: "\"Liam's unfinished homework\"", correct: false, feedback: "Irrelevant to Emily's role." },
+                            { text: "\"The blue string\"", correct: false, feedback: "Connection to keychains, not position." },
+                            { text: "\"The trophy case\"", correct: false, feedback: "Setting detail." }
+                        ]
+                    }
+                ],
+                choices: [
+                    { text: "► A) \"These tunnels could lead to the truth---I'm going in!\" (Use the key to explore the hidden passages) (Turn to Chapter 24)", nextChapter: "24" },
+                    { text: "► B) \"First I need to know who Emily really was...\" (Dig through old records about the 1974 president) (Turn to Chapter 25)", nextChapter: "25" }
+                ]
+            },
+            "13": {
+                title: "CHAPTER 13: The Stolen Blueprints",
+                content: `The student council office looked like a tornado had blown through it. Papers were scattered across the floor, drawers hung open like lolling tongues, and someone had knocked over a cup of markers, leaving rainbow streaks across the carpet. The school mascot poster---a grinning owl named "Professor Hoot"---hung half-torn from the wall, one eye peering eerily at the mess.
+
+Something crunched under your shoe as you stepped inside. You lifted your foot to find <span class="evidence">shards of a broken picture frame</span>. The photo inside showed last year's student council smiling in front of the oak tree. Someone had drawn black X's over three faces with a marker.
+
+Behind the torn poster, your fingers brushed against something stiff and crinkly. Taped to the wall were <span class="evidence">architectural blueprints</span> marked in bold red letters:
+
+<strong>"CONFIDENTIAL -- OAKWOOD ELEMENTARY TUNNEL SYSTEM"</strong>
+
+The faded drawings showed secret passages spiderwebbing under the school:
+1️⃣ A <span class="evidence">thick red line</span> leading from the basement to Principal Harris's office
+2️⃣ A <span class="evidence">dotted path</span> ending at the old oak tree's roots
+3️⃣ A <span class="evidence">third tunnel</span> violently scribbled out with black ink, though you could still make out the words "Storage Vault" beneath
+
+A neon green sticky note fluttered from the corner:
+<em>"They'll never think to look underground."</em>
+The loopy handwriting matched the library note!
+
+As you studied the blueprints, three clues jumped out:
+🔍 <span class="evidence">Fresh pencil marks</span> updating parts of the tunnels
+🔍 <span class="evidence">Muddy fingerprints</span> along the redacted section
+🔍 A <span class="evidence">tiny hole</span> punched through the oak tree location
+
+Outside, a door slammed. Your breath hitched---was someone coming? The blueprints trembled in your hands as you realized: <em>You might be standing right above one of these tunnels right now.</em>`,
+                questions: [
+                    {
+                        question: "What suggests the blueprints were recently used?",
+                        options: [
+                            { text: "\"Fresh pencil marks updating parts of the tunnels\"", correct: true, feedback: "Correct! Recent edits indicate active use." },
+                            { text: "\"A neon green sticky note\"", correct: false, feedback: "Color doesn't indicate timing." },
+                            { text: "\"The owl mascot poster\"", correct: false, feedback: "Unrelated to blueprints." },
+                            { text: "\"Rainbow streaks across the carpet\"", correct: false, feedback: "Result of mess, not evidence." }
+                        ]
+                    },
+                    {
+                        question: "What was deliberately hidden on the blueprints?",
+                        options: [
+                            { text: "\"A third tunnel violently scribbled out with black ink\"", correct: true, feedback: "Correct! Obvious attempt to conceal." },
+                            { text: "\"A thick red line\"", correct: false, feedback: "This was left visible." },
+                            { text: "\"Professor Hoot's eye\"", correct: false, feedback: "Poster detail, not blueprint." },
+                            { text: "\"The word HISTORY\"", correct: false, feedback: "Generic label." }
+                        ]
+                    }
+                ],
+                choices: [
+                    { text: "► A) \"I'm following Route #1 to the principal's office---she might be in danger!\" (Creep through the tunnels to investigate) (Turn to Chapter 14)", nextChapter: "14" },
+                    { text: "► B) \"Why black out this section? I need to find out what's hidden there!\" (Decipher the redacted tunnel's secret) (Turn to Chapter 16)", nextChapter: "16" }
+                ]
+            },
+            "14": {
+                title: "CHAPTER 14: The Boiler Room Trap",
+                content: `The tunnel spat you out into a room that smelled like hot metal and burnt toast. Rusty pipes hissed steam all around you, their valves dripping water in a creepy rhythm---<em>plink... plink... plink</em>---like a giant clock counting down.
+
+And then you saw it.
+
+There on a grease-stained workbench sat the <span class="evidence">real time capsule</span>, its metal surface gleaming under the flickering fluorescent light. But your excitement fizzled when you noticed:
+1️⃣ A <span class="evidence">digital timer</span> wired to the capsule (00:03:00... 00:02:59...)
+2️⃣ <span class="evidence">Twelve colorful wires</span> connecting it to machines around the room
+3️⃣ <span class="evidence">Chalk words</span> scrawled across the wall like a mad scientist's message:
+   <em>"Truth or treasure? Cut the red wire or blue wire."</em>
+
+Your eyes darted between two main wires:
+🔴 <span class="evidence">Red wire</span>: Thick as spaghetti, connected to a growling paper shredder that already had scraps flying out
+🔵 <span class="evidence">Blue wire</span>: Thin and coiled like a snake, running to a polished metal box with a huge lock
+
+The machines hummed louder as the timer dipped below 2:30. Sweat trickled down your neck as you noticed three crucial details:
+- The <span class="evidence">red wire</span> had tiny teeth marks (like a mouse had chewed it?)
+- The <span class="evidence">blue wire</span> sparkled with strange flecks of gold
+- A <span class="evidence">small mirror</span> taped above the timer showed something moving behind you!
+
+<em>"Tick-tock, detective,"</em> whispered a voice from the pipes---or was it just steam? Your hands shook as you pulled out your multi-tool. One wrong cut and...`,
+                questions: [
+                    {
+                        question: "What indicates the red wire is dangerous?",
+                        options: [
+                            { text: "\"Connected to a growling paper shredder\"", correct: true, feedback: "Correct! The shredder is clearly destructive." },
+                            { text: "\"Thick as spaghetti\"", correct: false, feedback: "Physical description, not danger." },
+                            { text: "\"Had tiny teeth marks\"", correct: false, feedback: "Suggests damage but not danger." },
+                            { text: "\"Sparkled with gold flecks\"", correct: false, feedback: "This describes the blue wire." }
+                        ]
+                    },
+                    {
+                        question: "What suggests someone is watching?",
+                        options: [
+                            { text: "\"A small mirror taped above the timer showed something moving\"", correct: true, feedback: "Correct! Clear surveillance evidence." },
+                            { text: "\"The pipes hissed steam\"", correct: false, feedback: "Ambient environment." },
+                            { text: "\"The capsules had colored stickers\"", correct: false, feedback: "Decoy feature." },
+                            { text: "\"The room smelled like burnt toast\"", correct: false, feedback: "Environmental detail." }
+                        ]
+                    }
+                ],
+                choices: [
+                    { text: "► A) \"I'm cutting the red wire! That shredder's about to destroy everything!\" (Snip the wire connected to the shredder) (Turn to Chapter 17 - Open Ending)", nextChapter: "17" },
+                    { text: "► B) \"The blue wire must be the right one---that box could have answers!\" (Cut the wire leading to the mysterious locked container) (Turn to Chapter 16 - Concrete Ending)", nextChapter: "16" }
+                ]
+            },
+            "15": {
+                title: "CHAPTER 15: The Midnight Meeting",
+                content: `The ancient oak's rough bark pressed against your cheek as you crouched in the shadows. Crickets chirped in the darkness, their song mixing with the whisper of leaves overhead. Then the school clock tower began to chime - <em>BONG... BONG... BONG</em> - each strike making your heart pound harder.
+
+Just as the twelfth chime faded, two figures emerged from behind the science wing.
+
+Mr. O'Reilly, the janitor, shuffled forward gripping a <span class="evidence">rusty shovel</span>. Moonlight glinted off the blade, showing fresh scratches in the metal. His usual blue uniform was replaced by black clothes that made him nearly invisible in the darkness.
+
+Beside him, Ms. Vega clutched a <span class="evidence">crumbling leather journal</span> to her chest. The cover was embossed with faded gold letters: <em>"Oakwood Elementary - Restricted Archives."</em>
+
+"We're too late," the janitor muttered, his voice as gravelly as the path beneath his boots. "Should've left the past buried."
+
+Ms. Vega flipped open the journal to a page titled <em>"The Real Founder's Secret."</em> Your eyes widened as you glimpsed:
+- A yellowed newspaper clipping about the school's 1921 groundbreaking
+- A hand-drawn map with "X" marks around the oak tree
+- A black-and-white photo of workers digging a <em>second hole</em> near the playground
+
+As you leaned closer, your foot came down on a dry twig. The <em>SNAP!</em> echoed through the silent playground.
+
+Both adults spun toward your hiding spot. Ms. Vega gasped, her glasses flashing in the moonlight. Mr. O'Reilly raised the shovel like a weapon.
+
+"Who's there?" he growled.
+
+You noticed three crucial details:
+1. Ms. Vega's pocket bulged with something round and metallic
+2. The janitor's boots had fresh mud caked on the soles
+3. The journal page had a red-inked note: <em>"The truth lies beneath the roots"</em>`,
+                questions: [
+                    {
+                        question: "What proves they're investigating the school's past?",
+                        options: [
+                            { text: "\"Ms. Vega flipped open the journal to 'The Real Founder's Secret'\"", correct: true, feedback: "Correct! The page title explicitly states this." },
+                            { text: "\"Mr. O'Reilly wore black clothes\"", correct: false, feedback: "This is disguise, not investigation." },
+                            { text: "\"The clock struck twelve\"", correct: false, feedback: "Time indicator only." },
+                            { text: "\"Crickets chirped\"", correct: false, feedback: "Setting detail." }
+                        ]
+                    },
+                    {
+                        question: "What links Ms. Vega to the keychain mystery?",
+                        options: [
+                            { text: "\"Her pocket bulged with something round and metallic\"", correct: true, feedback: "Correct! Matches the shape of the keychain pendant." },
+                            { text: "\"Her glasses flashed in moonlight\"", correct: false, feedback: "Visual effect." },
+                            { text: "\"The journal was leather-bound\"", correct: false, feedback: "Material description." },
+                            { text: "\"She gasped\"", correct: false, feedback: "Reaction, not connection." }
+                        ]
+                    }
+                ],
+                choices: [
+                    { text: "► A) Step forward and demand answers (Turn to Chapter 16)", nextChapter: "16" },
+                    { text: "► B) Quietly retreat and call for help (Turn to Chapter 17)", nextChapter: "17" }
+                ]
+            },
+            "16": {
+                title: "The Thief Unmasked!",
+                content: `Your fingers closed around the janitor's cap, and with one quick tug---WHOOSH!---it came flying off. A cascade of silver hair tumbled free, and suddenly, you were staring into the shocked face of...
+
+"Principal Harris!" you gasped.
+
+The moonlight reflected in her wide eyes as she dropped the shovel with a clang. Her usual crisp blazer was hidden under the janitor's baggy coat, and her hands---normally decorated with colorful rings---were smeared with dirt.
+
+"I... I had to protect the school's reputation," she whispered, her voice cracking. She pointed to the journal Ms. Vega still held. "That time capsule contained proof Oakwood was built on land stolen from the Miller family. My grandfather buried the evidence, and I couldn't let it come to light now---not with the school's 100th anniversary coming up."
+
+Ms. Vega stepped forward, her face pale. "But destroying history isn't the answer, Sarah," she said gently. "The Millers deserve to know the truth."
+
+Just then, flashing red and blue lights lit up the playground. Police officers rushed toward you, their radios crackling. Principal Harris hung her head as she handed the journal to the chief.
+
+"You're quite the detective," the chief told you, flipping through the journal's pages. "This evidence could help right a 100-year-old wrong."
+
+The next morning, your face smiled from the front page of the Oakwood Gazette:
+"LOCAL STUDENT SOLVES 50-YEAR MYSTERY!
+Historic Injustice Revealed in Time Capsule Scandal"
+
+At school, students cheered as you walked by. Even Mr. O'Reilly gave you a grudging nod as he mopped the hallway---with the real janitor this time.
+
+THE END (Justice served!)`,
+            },
+          "17": {
+                title: "The Hidden Map",
+                content: `The time capsule's rusty hinges screamed in protest as you pried it open. A puff of stale air escaped, carrying the scent of old metal and something faintly sour. Inside, three objects lay nestled in crumbling yellowed newspaper:
+
+1. A 1919 Land Deed with a rusty brown stain splashed across the Whitmore Family name. The paper felt brittle as autumn leaves as you carefully unfolded it, revealing a map of the woods behind school - but with property lines that didn't match current maps.
+
+2. A Rusted Skeleton Key dangling from a tag that read "GATE 5" in shaky handwriting. When you touched it, a flake of red paint came off on your finger. The key was ice-cold, like it had been buried in snow.
+
+3. A Hand-Drawn Map showing seven X's deep in the forest. Beneath each was a tiny date spanning 1918-1921. The paper trembled in your suddenly sweaty hands as you realized - these weren't treasure marks. They were graves.
+
+Ms. Vega's glasses fogged up as she gasped. "This...this isn't our time capsule." Her voice was barely a whisper. "Someone switched them."
+
+The janitor crossed himself, his face pale. "We should've never dug this up," he muttered. "Some secrets..." A distant siren cut him off, growing louder by the second.
+
+As the adults argued, you quietly slipped the key into your pocket. It weighed more than it should have, like it was tugging you toward the woods. The map's X's seemed to glow slightly in the fading light.
+
+Three Mysteries Remained:
+• Why did the deed have a bloodstain?
+• Where was Gate 5 - the school only had 4 gates!
+• Who was buried in those woods 100 years ago?
+
+The sirens were close now. You had seconds to decide - hand everything over to the police, or...`,
+            }
+        };
+
+        // Initialize the game
+        let currentChapter = "1";
+        let answeredQuestions = 0;
+        let totalQuestions = 0;
+
+        // DOM elements
+        const chapterContainer = document.getElementById('chapter-container');
+
+        // Function to load a chapter
+        function loadChapter(chapterId) {
+            const chapter = chapters[chapterId];
+            if (!chapter) {
+                chapterContainer.innerHTML = "<h2>Chapter Not Found</h2><p>This chapter doesn't exist yet!</p>";
+                return;
+            }
+
+            // Reset question tracking
+            answeredQuestions = 0;
+            totalQuestions = chapter.questions.length;
+
+            // Build chapter HTML
+            let html = `
+                <div class="chapter">
+                    <h2>${chapter.title}</h2>
+                    <div class="content">${chapter.content}</div>
+            `;
+
+            // Add questions if they exist
+            if (chapter.questions.length > 0) {
+                html += `<h3>Evidence-based multiple-choice questions</h3>`;
+                
+                chapter.questions.forEach((q, qIndex) => {
+                    html += `
+                        <div class="question" id="question-${qIndex}">
+                            <p><strong>Q${qIndex + 1}:</strong> ${q.question}</p>
+                            <form id="form-${qIndex}">
+                    `;
+                    
+                    q.options.forEach((option, oIndex) => {
+                        html += `
+                            <div>
+                                <input type="radio" id="q${qIndex}-o${oIndex}" name="q${qIndex}" value="${oIndex}">
+                                <label for="q${qIndex}-o${oIndex}">${option.text}</label>
+                            </div>
+                        `;
+                    });
+                    
+                    html += `
+                            <button type="button" onclick="checkAnswer(${qIndex}, ${chapterId})">Submit Answer</button>
+                            <div class="feedback hidden" id="feedback-${qIndex}"></div>
+                            </form>
+                        </div>
+                    `;
+                });
+            }
+
+            // Add choices if they exist
+            if (chapter.choices.length > 0) {
+                html += `<h3>YOUR CHOICE:</h3>`;
+                chapter.choices.forEach((choice, cIndex) => {
+                    html += `
+                        <div class="choice hidden" id="choice-${cIndex}" onclick="goToChapter('${choice.nextChapter}')">
+                            ${choice.text}
+                        </div>
+                    `;
+                });
+            }
+
+            html += `</div>`;
+            chapterContainer.innerHTML = html;
+
+            // Hide choices initially if there are questions
+            if (chapter.questions.length > 0) {
+                document.querySelectorAll('.choice').forEach(choice => {
+                    choice.classList.add('hidden');
+                });
+            } else {
+                // Show choices immediately if no questions
+                document.querySelectorAll('.choice').forEach(choice => {
+                    choice.classList.remove('hidden');
+                });
+            }
+        }
+
+        // Function to check an answer
+        window.checkAnswer = function(qIndex, chapterId) {
+            const form = document.getElementById(`form-${qIndex}`);
+            const selectedOption = form.querySelector('input[name="q' + qIndex + '"]:checked');
+            const feedback = document.getElementById(`feedback-${qIndex}`);
+            
+            if (!selectedOption) {
+                feedback.textContent = "Please select an answer!";
+                feedback.className = "feedback incorrect";
+                feedback.style.display = "block";
+                return;
+            }
+
+            const chapter = chapters[chapterId];
+            const question = chapter.questions[qIndex];
+            const selectedAnswer = question.options[parseInt(selectedOption.value)];
+
+            feedback.textContent = selectedAnswer.feedback;
+            feedback.className = `feedback ${selectedAnswer.correct ? "correct" : "incorrect"}`;
+            feedback.style.display = "block";
+
+            if (selectedAnswer.correct) {
+                answeredQuestions++;
+                // Disable the question form
+                form.querySelectorAll('input').forEach(input => {
+                    input.disabled = true;
+                });
+                form.querySelector('button').disabled = true;
+
+                // Check if all questions are answered correctly
+                if (answeredQuestions === totalQuestions) {
+                    // Show all choices
+                    document.querySelectorAll('.choice').forEach(choice => {
+                        choice.classList.remove('hidden');
+                    });
+                }
+            }
+        };
+
+        // Function to navigate to a chapter
+        window.goToChapter = function(chapterId) {
+            currentChapter = chapterId;
+            loadChapter(chapterId);
+        };
+
+        // Start the game
+        loadChapter(currentChapter);
+    </script>
+</body>
+</html>
